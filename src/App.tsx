@@ -1,9 +1,7 @@
+import { Layout } from "./components/Layout/Layout";
+
 function App() {
-  return (
-    <div className="wrapper">
-      <main>qwe</main>
-    </div>
-  );
+  return <Layout>123</Layout>;
 }
 
 export default App;

@@ -1,0 +1,14 @@
+.footer {
+  background: var(--deep-blue);
+  background: linear-gradient(180deg, var(--deep-blue) 0%, var(--blue) 100%);
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+}
+.copyright {
+  color: var(--light-gray);
+  font-size: 24px;
+}

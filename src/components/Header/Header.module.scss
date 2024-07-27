@@ -1,0 +1,35 @@
+.header {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    background: url(/christmas-lights.svg);
+  }
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  position: relative;
+}
+.logo {
+  width: 143px;
+  height: 36px;
+}
+.title {
+  position: absolute;
+  left: 50%;
+  color: var(--deep-blue);
+  font-weight: 700;
+  font-size: 24px;
+  transform: translateX(-50%);
+}
+.actions {
+  display: flex;
+  gap: 15px;
+}
