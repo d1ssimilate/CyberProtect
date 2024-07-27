@@ -1,0 +1,15 @@
+@import "./reset.css";
+@import "./variables.css";
+@import "./font.css";
+
+html {
+  scrollbar-gutter: stable;
+}
+
+#root {
+  height: 100%;
+}
+
+.main {
+  height: 100%;
+}
