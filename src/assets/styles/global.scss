@@ -2,12 +2,23 @@
 @import "./reset.scss";
 @import "./variables.scss";
 
+::-webkit-scrollbar {
+  background: white;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--deep-blue);
+  width: 100%;
+}
+
 #root {
   height: 100%;
 }
 
 .main {
   height: 100%;
+  margin-top: 90px;
 }
 .container {
   max-width: 1440px;
@@ -22,6 +33,6 @@
   font-family: Loos, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-.swiper-container {
-  max-height: calc(100dvh - 180px);
-}
+// .swiper-wrapper {
+//   max-height: calc(-180px + 100dvh);
+// }

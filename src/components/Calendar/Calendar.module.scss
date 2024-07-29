@@ -1,3 +1,22 @@
 .calendar {
-    background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 144px;
+  position: relative;
+}
+.title {
+  text-transform: uppercase;
+  color: var(--orange);
+  font-size: 70px;
+  font-weight: 700;
+  text-align: center;
+}
+.snowFlakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  max-width: 100%;
 }

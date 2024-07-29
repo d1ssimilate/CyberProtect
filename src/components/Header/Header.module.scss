@@ -1,5 +1,13 @@
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 10;
+  background: white;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
+  box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
   &::before {
     position: absolute;
     content: "";
