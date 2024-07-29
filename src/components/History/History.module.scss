@@ -1,0 +1,47 @@
+.history {
+  height: calc(100dvh - 180px);
+  background: var(--deep-blue);
+  background: linear-gradient(110deg, var(--deep-blue) 0%, var(--blue) 100%);
+  position: relative;
+  display: grid;
+  place-content: center;
+  padding: 20px 0;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 280px;
+    width: 100%;
+    background-image: url("/wave.svg");
+    background-repeat: no-repeat;
+  }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 12px;
+  position: relative;
+  background: rgba(25, 37, 68, 0.3);
+  border-radius: 12px;
+}
+.title {
+  text-transform: uppercase;
+  color: var(--orange);
+  font-size: 38px;
+  font-weight: 700;
+}
+.list {
+  display: inherit;
+  flex-direction: inherit;
+  gap: inherit;
+  &__item {
+    display: flex;
+    gap: inherit;
+    svg {
+      height: 50px;
+      min-width: 50px;
+    }
+  }
+}
