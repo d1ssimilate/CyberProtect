@@ -1,12 +1,12 @@
 .recommendation {
-  width: 144px;
-  height: 144px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   background: var(--light-gray);
   display: grid;
   place-content: center;
   color: var(--white);
-  font-size: 70px;
+  font-size: 55px;
   font-weight: 700;
   position: absolute;
   &__active {

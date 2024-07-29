@@ -9,7 +9,7 @@ const numbers = new Array<number>(31).fill(0);
 export function Calendar() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   return (
-    <div ref={containerRef} className={styles.calendar}>
+    <div ref={containerRef} className={`container ${styles.calendar}`}>
       <CalendarSnowFlakes container={containerRef} />
       <h2 className={styles.title}>
         Адвент-календарь

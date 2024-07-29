@@ -33,7 +33,7 @@ export function CalendarSnowFlakes({
 
     const drawSnowflakes = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = "24px Arial";
+      ctx.font = "40px Arial";
       ctx.fillStyle = "#d9dfe8";
       snowflakes.forEach((snowflake) => {
         ctx.fillText("❄", snowflake.x, snowflake.y);
