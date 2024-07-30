@@ -1,0 +1,14 @@
+.container {
+  min-height: calc(100dvh - 180px);
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  padding: 20px 0;
+}
+.title {
+  color: var(--deep-blue);
+  font-weight: 500;
+}
+.content {
+  color: var(--black);
+}

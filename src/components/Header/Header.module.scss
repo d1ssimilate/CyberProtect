@@ -32,10 +32,12 @@
 .title {
   position: absolute;
   left: 50%;
-  color: var(--deep-blue);
-  font-weight: 700;
-  font-size: 24px;
   transform: translateX(-50%);
+  h1 {
+    color: var(--deep-blue);
+    font-weight: 700;
+    font-size: 24px;
+  }
 }
 .actions {
   display: flex;

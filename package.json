@@ -13,6 +13,7 @@
     "@tanstack/react-router": "^1.45.14",
     "axios": "^1.7.2",
     "framer-motion": "^11.3.19",
+    "primereact": "^10.8.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.77.8",

@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as mainImport } from './routes/__main'
 import { Route as mainIndexImport } from './routes/__main/index'
+import { Route as mainRecommendationNumberImport } from './routes/__main/recommendation/$number'
 
 // Create/Update Routes
 
@@ -23,6 +24,11 @@ const mainRoute = mainImport.update({
 
 const mainIndexRoute = mainIndexImport.update({
   path: '/',
+  getParentRoute: () => mainRoute,
+} as any)
+
+const mainRecommendationNumberRoute = mainRecommendationNumberImport.update({
+  path: '/recommendation/$number',
   getParentRoute: () => mainRoute,
 } as any)
 
@@ -44,13 +50,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof mainIndexImport
       parentRoute: typeof mainImport
     }
+    '/__main/recommendation/$number': {
+      id: '/__main/recommendation/$number'
+      path: '/recommendation/$number'
+      fullPath: '/recommendation/$number'
+      preLoaderRoute: typeof mainRecommendationNumberImport
+      parentRoute: typeof mainImport
+    }
   }
 }
 
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  mainRoute: mainRoute.addChildren({ mainIndexRoute }),
+  mainRoute: mainRoute.addChildren({
+    mainIndexRoute,
+    mainRecommendationNumberRoute,
+  }),
 })
 
 /* prettier-ignore-end */
@@ -67,11 +83,16 @@ export const routeTree = rootRoute.addChildren({
     "/__main": {
       "filePath": "__main.tsx",
       "children": [
-        "/__main/"
+        "/__main/",
+        "/__main/recommendation/$number"
       ]
     },
     "/__main/": {
       "filePath": "__main/index.tsx",
+      "parent": "/__main"
+    },
+    "/__main/recommendation/$number": {
+      "filePath": "__main/recommendation/$number.tsx",
       "parent": "/__main"
     }
   }

@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Button } from "../Button/Button";
 import { LogoIcon } from "../Icons/LogoIcon";
 import styles from "./Header.module.scss";
@@ -13,7 +14,10 @@ export function Header() {
         >
           <LogoIcon />
         </a>
-        <h1 className={styles.title}>Кибербезопасный Новый год</h1>
+        <Link to={"/"} className={styles.title}>
+          <h1>Кибербезопасный Новый год</h1>
+        </Link>
+
         <div className={styles.actions}>
           <Button variant="red">Подписаться</Button>
           <Button variant="blue">Войти</Button>
