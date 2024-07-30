@@ -16,9 +16,13 @@ html {
   width: 100%;
 }
 
-#root {
-  height: 100%;
+body {
+  min-height: calc(100% - 90px);
 }
+
+// #root {
+//   height: 100%;
+// }
 
 .main {
   height: 100%;
@@ -34,9 +38,24 @@ html {
   color: var(--white);
   font-size: 30px;
   font-weight: 500;
-  font-family: Loos, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    Loos,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 // .swiper-wrapper {
 //   max-height: calc(-180px + 100dvh);
 // }
+.layout {
+  display: flex;
+  flex-direction: column;
+}

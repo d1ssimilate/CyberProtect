@@ -1,0 +1,18 @@
+.container {
+  height: calc(100dvh - 180px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.status {
+  font-size: 100px;
+  color: var(--deep-blue);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.text {
+  color: var(--blue);
+  font-weight: 500;
+}
