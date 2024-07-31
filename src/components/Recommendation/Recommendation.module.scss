@@ -4,7 +4,6 @@
   background: var(--light-gray);
   display: grid;
   place-content: center;
-
   border-radius: 12px;
   position: relative;
   span {
@@ -16,6 +15,10 @@
   &__active {
     background: var(--red);
     cursor: pointer;
+    .background {
+      opacity: 0.9;
+      filter: unset;
+    }
   }
   &__odd {
     height: 300px;

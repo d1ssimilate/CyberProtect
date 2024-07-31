@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "../Button/Button";
 import { LogoIcon } from "../Icons/LogoIcon";
 import styles from "./Header.module.scss";
+import { HeaderMenu } from "./HeaderMenu";
 
 export function Header() {
   return (
@@ -22,6 +23,7 @@ export function Header() {
           <Button variant="red">Подписаться</Button>
           <Button variant="blue">Войти</Button>
         </div>
+        <HeaderMenu />
       </div>
     </header>
   );
