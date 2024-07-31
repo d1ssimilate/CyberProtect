@@ -1,0 +1,57 @@
+.grid {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+.column {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+}
+.item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.item:nth-child(odd) {
+  img {
+    animation: rotate 2.5s linear infinite;
+  }
+}
+.item:not(:nth-child(odd)) {
+  img {
+    animation: rotateAnother 2.5s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(30deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes rotateAnother {
+  0% {
+    transform: rotate(30deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(30deg);
+  }
+}
