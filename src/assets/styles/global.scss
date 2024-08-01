@@ -18,17 +18,27 @@ html {
 
 body {
   min-height: calc(100% - 90px);
+  overflow-x: hidden;
 }
-
+// * {
+//   border: 1px solid red;
+// }
 .main {
   height: 100%;
   margin-top: 90px;
+  @media (max-width: 575.98px) {
+    margin-top: 45px;
+  }
 }
+
 .container {
   max-width: 1440px;
   width: 100%;
   padding: 0 20px;
   margin: 0 auto;
+  @media (max-width: 575.98px) {
+    padding: 0 10px;
+  }
 }
 * {
   color: var(--white);

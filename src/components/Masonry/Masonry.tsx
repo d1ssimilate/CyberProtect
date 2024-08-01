@@ -19,7 +19,7 @@ export function Masonry({ items }: { items: any[] }) {
 
   const columnCount = useMemo(() => {
     if (screenWidth >= 991) return 5;
-    if (screenWidth >= 575) return 3;
+    if (screenWidth >= 360) return 3;
     return 1;
   }, [screenWidth]);
 

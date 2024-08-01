@@ -3,6 +3,7 @@ import { modalAnimations } from "./Modal.animatios";
 import styles from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
+import { CrossIcon } from "../Icons/CrossIcon";
 
 interface ModalProps extends PropsWithChildren {
   isOpen: boolean;
@@ -21,6 +22,10 @@ export function Modal(props: ModalProps) {
       <motion.div className={styles.modal} {...modalAnimations.root}>
         <motion.div className={styles.inner} {...modalAnimations.content}>
           <div className={styles.content}>
+            <CrossIcon
+              onClick={() => props.setIsOpen(false)}
+              className={styles.close}
+            />
             <div className={styles.head}>
               <div data-number={props.number} className={styles.number} />
               <p className={styles.title}>{props.title}</p>

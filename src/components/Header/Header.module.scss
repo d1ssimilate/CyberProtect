@@ -4,7 +4,7 @@
   width: 100%;
   left: 0;
   z-index: 10;
-  background: white;
+  background: var(--white);
   -webkit-box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
   -moz-box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
   box-shadow: 0px 4px 4px 0px rgba(25, 37, 68, 0.33);
@@ -17,6 +17,10 @@
     left: 0;
     animation: changeLights 2s infinite;
     rotate: 180deg;
+    background-size: contain;
+    @media (max-width: 575.98px) {
+      top: -10px;
+    }
   }
 }
 .container {
@@ -25,10 +29,19 @@
   justify-content: space-between;
   height: 90px;
   position: relative;
+  @media (max-width: 575.98px) {
+    height: 45px;
+  }
 }
 .logo {
-  width: 143px;
-  height: 36px;
+  svg {
+    width: 143px;
+    height: 36px;
+    @media (max-width: 575.98px) {
+      width: 85px;
+      height: 20px;
+    }
+  }
 }
 .title {
   position: absolute;
@@ -39,6 +52,9 @@
     font-weight: 700;
     font-size: 24px;
     text-align: center;
+    @media (max-width: 575.98px) {
+      font-size: 12px;
+    }
   }
   @media (max-width: 991.98px) {
     position: unset;
@@ -58,13 +74,14 @@
     display: block;
   }
   &__icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     z-index: 1;
-    width: 40px;
-    height: 40px;
+    display: grid;
+    place-content: center;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
   &__nav {
     position: fixed;
@@ -72,7 +89,7 @@
     top: 0;
     height: 100%;
     background-color: var(--white);
-    max-width: 300px;
+    max-width: 280px;
     width: 100%;
   }
   &__content {

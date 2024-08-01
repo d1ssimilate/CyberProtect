@@ -7,25 +7,52 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+  @media (max-width: 767.98px) {
+    gap: 30px;
+  }
+  @media (max-width: 575.98px) {
+    gap: 20px;
+  }
 }
 .title {
   font-size: 38px;
   font-weight: 700;
   color: var(--orange);
+  @media (max-width: 767.98px) {
+    font-size: 30px;
+  }
+  @media (max-width: 575.98px) {
+    font-size: 26px;
+  }
 }
 .slide {
   display: flex;
   flex-direction: column;
   gap: 48px;
   align-items: center;
+  @media (max-width: 767.98px) {
+    gap: 30px;
+  }
+  @media (max-width: 575.98px) {
+    gap: 20px;
+  }
 }
 .preview {
+  display: flex;
+  place-content: center;
   img {
     object-fit: cover;
     max-width: 650px;
     height: 360px;
     width: 100%;
     border-radius: 4px;
+    @media (max-width: 767.98px) {
+      height: 280px;
+    }
+    @media (max-width: 575.98px) {
+      height: 200px;
+      max-width: 95%;
+    }
   }
 }
 .project {
@@ -33,14 +60,30 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  @media (max-width: 767.98px) {
+    gap: 10px;
+  }
   &__name {
     font-size: 38px;
     font-weight: 700;
     text-transform: uppercase;
+    @media (max-width: 767.98px) {
+      font-size: 30px;
+    }
+    @media (max-width: 575.98px) {
+      font-size: 26px;
+    }
   }
   &__description {
     max-width: 80%;
     text-align: justify;
     font-size: 24px;
+    @media (max-width: 767.98px) {
+      font-size: 20px;
+      max-width: 90%;
+    }
+    @media (max-width: 575.98px) {
+      font-size: 18px;
+    }
   }
 }
