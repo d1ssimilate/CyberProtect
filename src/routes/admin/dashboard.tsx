@@ -12,7 +12,7 @@ export const Route = createFileRoute("/admin/dashboard")({
   },
   beforeLoad: async () => {
     const { getCookie } = useCookie();
-    if (!getCookie("adminToken")) throw redirect({ to: "/admin" });
+    if (!getCookie("a")) throw redirect({ to: "/admin" });
   },
   component: () => (
     <AdminLayout path={Route.fullPath} useSearch={Route.useSearch}>

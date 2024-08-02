@@ -5,10 +5,13 @@ import { useCookie } from "../hooks/useCookie";
 export const queryClient = new QueryClient();
 
 const { getCookie } = useCookie();
-const token = getCookie("token");
+let token: string | undefined;
+
+if (window.location.pathname.startsWith("/admin")) token = getCookie("a");
+else token = getCookie("l");
 
 const headers: Record<string, string> = token
-  ? { Authorization: `Token ${token}` }
+  ? { Authorization: `Bearer ${token}` }
   : {};
 
 export const api = axios.create({
