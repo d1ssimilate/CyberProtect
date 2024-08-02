@@ -1,0 +1,18 @@
+.auth {
+  min-height: calc(100dvh - 180px);
+  display: grid;
+  place-content: center;
+  gap: 48px;
+  &__title {
+    color: var(--black);
+    text-align: center;
+  }
+  @media (max-width: 575.98px) {
+    min-height: calc(100dvh - 90px);
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

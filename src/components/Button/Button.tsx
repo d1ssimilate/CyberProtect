@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps extends ComponentProps<"button"> {
   variant: "red" | "blue";
-  loading?: boolean;
+  loading?: boolean | string;
 }
 export function Button(props: ButtonProps) {
   return (

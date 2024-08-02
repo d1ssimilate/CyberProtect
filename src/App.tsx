@@ -1,14 +1,14 @@
 import { History } from "./components/History/History";
-import { Layout } from "./components/Layout/Layout";
+import { MainLayout } from "./components/Layouts/MainLayout/MainLayout";
 import "swiper/css";
 import { Calendar } from "./components/Calendar/Calendar";
 
 function App() {
   return (
-    <Layout>
+    <MainLayout>
       <History />
       <Calendar />
-    </Layout>
+    </MainLayout>
   );
 }
 

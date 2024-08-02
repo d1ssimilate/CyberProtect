@@ -16,7 +16,7 @@ export const CrossIcon = (props: ComponentProps<"svg">) => {
         y2="-2"
         transform="matrix(0.707136 -0.707077 0.707136 0.707077 3 25)"
         stroke="#192544"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <line
         y1="-2"
@@ -24,7 +24,7 @@ export const CrossIcon = (props: ComponentProps<"svg">) => {
         y2="-2"
         transform="matrix(-0.707107 -0.707107 0.707048 -0.707166 24.2131 22.2131)"
         stroke="#192544"
-        stroke-width="4"
+        strokeWidth="4"
       />
     </svg>
   );

@@ -11,51 +11,77 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as mainImport } from './routes/__main'
-import { Route as mainIndexImport } from './routes/__main/index'
-import { Route as mainRecommendationNumberImport } from './routes/__main/recommendation/$number'
+import { Route as MainImport } from './routes/_main'
+import { Route as AdminIndexImport } from './routes/admin/index'
+import { Route as MainIndexImport } from './routes/_main/index'
+import { Route as AdminDashboardImport } from './routes/admin/dashboard'
+import { Route as MainRecommendationNumberImport } from './routes/_main/recommendation/$number'
 
 // Create/Update Routes
 
-const mainRoute = mainImport.update({
-  id: '/__main',
+const MainRoute = MainImport.update({
+  id: '/_main',
   getParentRoute: () => rootRoute,
 } as any)
 
-const mainIndexRoute = mainIndexImport.update({
-  path: '/',
-  getParentRoute: () => mainRoute,
+const AdminIndexRoute = AdminIndexImport.update({
+  path: '/admin/',
+  getParentRoute: () => rootRoute,
 } as any)
 
-const mainRecommendationNumberRoute = mainRecommendationNumberImport.update({
+const MainIndexRoute = MainIndexImport.update({
+  path: '/',
+  getParentRoute: () => MainRoute,
+} as any)
+
+const AdminDashboardRoute = AdminDashboardImport.update({
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MainRecommendationNumberRoute = MainRecommendationNumberImport.update({
   path: '/recommendation/$number',
-  getParentRoute: () => mainRoute,
+  getParentRoute: () => MainRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/__main': {
-      id: '/__main'
+    '/_main': {
+      id: '/_main'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof mainImport
+      preLoaderRoute: typeof MainImport
       parentRoute: typeof rootRoute
     }
-    '/__main/': {
-      id: '/__main/'
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/_main/': {
+      id: '/_main/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof mainIndexImport
-      parentRoute: typeof mainImport
+      preLoaderRoute: typeof MainIndexImport
+      parentRoute: typeof MainImport
     }
-    '/__main/recommendation/$number': {
-      id: '/__main/recommendation/$number'
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/_main/recommendation/$number': {
+      id: '/_main/recommendation/$number'
       path: '/recommendation/$number'
       fullPath: '/recommendation/$number'
-      preLoaderRoute: typeof mainRecommendationNumberImport
-      parentRoute: typeof mainImport
+      preLoaderRoute: typeof MainRecommendationNumberImport
+      parentRoute: typeof MainImport
     }
   }
 }
@@ -63,10 +89,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  mainRoute: mainRoute.addChildren({
-    mainIndexRoute,
-    mainRecommendationNumberRoute,
+  MainRoute: MainRoute.addChildren({
+    MainIndexRoute,
+    MainRecommendationNumberRoute,
   }),
+  AdminDashboardRoute,
+  AdminIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -77,23 +105,31 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/__main"
+        "/_main",
+        "/admin/dashboard",
+        "/admin/"
       ]
     },
-    "/__main": {
-      "filePath": "__main.tsx",
+    "/_main": {
+      "filePath": "_main.tsx",
       "children": [
-        "/__main/",
-        "/__main/recommendation/$number"
+        "/_main/",
+        "/_main/recommendation/$number"
       ]
     },
-    "/__main/": {
-      "filePath": "__main/index.tsx",
-      "parent": "/__main"
+    "/admin/dashboard": {
+      "filePath": "admin/dashboard.tsx"
     },
-    "/__main/recommendation/$number": {
-      "filePath": "__main/recommendation/$number.tsx",
-      "parent": "/__main"
+    "/_main/": {
+      "filePath": "_main/index.tsx",
+      "parent": "/_main"
+    },
+    "/admin/": {
+      "filePath": "admin/index.tsx"
+    },
+    "/_main/recommendation/$number": {
+      "filePath": "_main/recommendation/$number.tsx",
+      "parent": "/_main"
     }
   }
 }

@@ -16,7 +16,7 @@ export const BurgerMenuIcon = (props: ComponentProps<"svg">) => {
         y2="-2"
         transform="matrix(1 0 8.33665e-05 1 0 4)"
         stroke="#192544"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <line
         y1="-2"
@@ -24,7 +24,7 @@ export const BurgerMenuIcon = (props: ComponentProps<"svg">) => {
         y2="-2"
         transform="matrix(1 0 8.33665e-05 1 0 12)"
         stroke="#192544"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <line
         y1="-2"
@@ -32,7 +32,7 @@ export const BurgerMenuIcon = (props: ComponentProps<"svg">) => {
         y2="-2"
         transform="matrix(1 0 8.33665e-05 1 0 20)"
         stroke="#192544"
-        stroke-width="4"
+        strokeWidth="4"
       />
     </svg>
   );

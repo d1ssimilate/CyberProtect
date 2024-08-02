@@ -1,0 +1,23 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 18px;
+}
+.label,
+.error {
+  font-size: inherit;
+}
+.label {
+  color: var(--deep-blue);
+}
+.input {
+  border-radius: 6px;
+  border: 2px solid var(--deep-blue);
+  color: var(--deep-blue);
+  font-size: inherit;
+  padding: 6px 10px;
+}
+.error {
+  color: red;
+}

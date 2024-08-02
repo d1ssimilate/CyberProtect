@@ -7,11 +7,14 @@
   align-items: center;
   justify-content: space-between;
   height: 90px;
+  @media (max-width: 575.98px) {
+    height: 45px;
+  }
 }
 .copyright {
   color: var(--light-gray);
   font-size: 24px;
   @media (max-width: 575.98px) {
-    font-size: 20px;
+    font-size: 16px;
   }
 }

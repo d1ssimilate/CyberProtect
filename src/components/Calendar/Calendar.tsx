@@ -1,7 +1,10 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Recommendation } from "../Recommendation/Recommendation";
 import styles from "./Calendar.module.scss";
 import { Masonry } from "../Masonry/Masonry";
+import { useMutation } from "@tanstack/react-query";
+import { TRecommendationDtoRequest } from "../../api/entities/recommendation/recommendation.types";
+import { recommendationApiService } from "../../api/entities/recommendation/recommendation.api";
 
 const numbers = new Array<number>(31).fill(0);
 
@@ -15,6 +18,11 @@ const images = [
 ];
 
 export function Calendar() {
+  const { mutate } = useMutation({
+    mutationFn: (params: TRecommendationDtoRequest) =>
+      recommendationApiService.postRecommendationRequest({ params }),
+  });
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const recommendationItems = numbers.map((_, idx) => {
     const isOdd = (idx + 1) % 2 !== 0;
@@ -28,7 +36,10 @@ export function Calendar() {
   });
   return (
     <div ref={containerRef} className={`container ${styles.calendar}`}>
-      <h2 className={styles.title}>
+      <h2
+        onClick={() => mutate({ title: "qwe12312", description: "qwqw1212" })}
+        className={styles.title}
+      >
         Адвент-календарь
         <br />
         2024

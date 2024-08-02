@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  gap: 15px;
+}
+.aside {
+  width: 350px;
+  min-height: 100dvh;
+  background: var(--deep-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 30px 20px;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.link {
+  font-size: 26px;
+  cursor: pointer;
+}
+.icon {
+  path {
+    fill: var(--white);
+  }
+}
