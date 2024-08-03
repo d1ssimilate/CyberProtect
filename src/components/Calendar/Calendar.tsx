@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Recommendation } from "../Recommendation/Recommendation";
 import styles from "./Calendar.module.scss";
 import { Masonry } from "../Masonry/Masonry";

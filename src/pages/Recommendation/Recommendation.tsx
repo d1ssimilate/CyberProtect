@@ -1,6 +1,8 @@
 import styles from "./Recommendation.module.scss";
 
 export function RecommendationPage({ number }: { number: string }) {
+  console.log(number);
+
   return (
     <div className={`container ${styles.container}`}>
       <h2 className={styles.title}>

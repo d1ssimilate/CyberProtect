@@ -4,7 +4,6 @@ import { ReactNode } from "@tanstack/react-router";
 import { useCookie } from "../../hooks/useCookie";
 import { useQuery } from "@tanstack/react-query";
 import { adminApiService } from "../../api/entities/admin/admin.api";
-import { AxiosError } from "axios";
 
 export const AuthContext = createContext<AuthContextType>({
   user: { isAuth: false },
@@ -12,7 +11,7 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: ReactNode) => {
-  const { getCookie, clearCookies, setCookie } = useMemo(() => useCookie(), []);
+  const { getCookie } = useMemo(() => useCookie(), []);
   const [user, setUser] = useState<User>({
     isAuth: getCookie("l") ? true : false,
   });
@@ -21,12 +20,12 @@ export const AuthProvider = ({ children }: ReactNode) => {
   });
 
   if (getCookie("a") || getCookie("l")) {
-    const { data: adminData, error: adminError } = useQuery({
+    const { data: adminData } = useQuery({
       queryKey: ["admin"],
       queryFn: () => adminApiService.adminCheckToken(),
       enabled: !!getCookie("a"),
     });
-    const { data: userData, error: userError } = useQuery({
+    const { data: userData } = useQuery({
       queryKey: ["user"],
       queryFn: () => adminApiService.adminCheckToken(),
       enabled: !!getCookie("l"),
