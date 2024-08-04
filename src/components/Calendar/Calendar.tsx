@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Recommendation } from "../Recommendation/Recommendation";
 import styles from "./Calendar.module.scss";
 import { Masonry } from "../Masonry/Masonry";
@@ -7,6 +7,7 @@ import { TRecommendationDtoRequest } from "../../api/entities/recommendation/rec
 import { recommendationApiService } from "../../api/entities/recommendation/recommendation.api";
 
 const numbers = new Array<number>(31).fill(0);
+
 
 const images = [
   "/christmas-toys/black-ball.svg",
@@ -18,10 +19,20 @@ const images = [
 ];
 
 export function Calendar() {
+  const [recommendations, setRecommendations] = useState(null);
+
   const { mutate } = useMutation({
     mutationFn: (params: TRecommendationDtoRequest) =>
       recommendationApiService.postRecommendationRequest({ params }),
   });
+
+  useEffect(() => {
+    const getRecommendations = async () => { 
+      const result = await recommendationApiService.getRecommendations()
+      setRecommendations(result.data);      
+    };
+    getRecommendations();
+  },[]);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const recommendationItems = numbers.map((_, idx) => {
@@ -44,6 +55,7 @@ export function Calendar() {
         <br />
         2024
       </h2>
+      
       <Masonry items={recommendationItems}></Masonry>
     </div>
   );
