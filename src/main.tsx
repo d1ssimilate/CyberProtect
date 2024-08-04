@@ -8,6 +8,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./api/instance";
 import { AuthProvider } from "./components/AuthProvider/AuthProvider";
+import { DialogProvider } from "./components/DialogProvier/DialogProvider";
 
 const router = createRouter({ routeTree });
 
@@ -24,9 +25,11 @@ ReactDOM.createRoot(rootElement!).render(
     <QueryClientProvider client={queryClient}>
       <Suspense>
         <AuthProvider>
-          <PrimeReactProvider>
-            <RouterProvider router={router} />
-          </PrimeReactProvider>
+          <DialogProvider>
+            <PrimeReactProvider>
+              <RouterProvider router={router} />
+            </PrimeReactProvider>
+          </DialogProvider>
         </AuthProvider>
       </Suspense>
     </QueryClientProvider>

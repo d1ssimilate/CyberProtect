@@ -1,20 +1,25 @@
 import { api } from "../../instance";
 import {
-  TRecommendationDtoRequest,
+  TRecommendationEditDtoRequest,
   TRecommendationRequestData,
 } from "./recommendation.types";
 
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 class RecommendationApi {
   async getRecommendations() {
-    return api.get<TRecommendationRequestData[]>("/days/");
+    return api.get<TRecommendationRequestData[]>("/days", {
+      params: { timeZone },
+    });
   }
   async getRecommendationsAdmin() {
     return api.get<TRecommendationRequestData[]>("/days/admin");
   }
-  async postRecommendationRequest({
+
+  async putRecommendationRequest({
     config,
     params,
-  }: AxiosRequestConfig<TRecommendationDtoRequest>) {
+  }: AxiosRequestConfig<TRecommendationEditDtoRequest>) {
     const formData = new FormData();
     formData.append("title", params.title);
     formData.append("description", params.description);
@@ -22,7 +27,7 @@ class RecommendationApi {
       for (const attachment of params.attachments) {
         formData.append("attachments", attachment);
       }
-    const response = await api.post("/day/", formData, config);
+    const response = await api.put(`/days/${params.id}`, formData, config);
     return response;
   }
 }

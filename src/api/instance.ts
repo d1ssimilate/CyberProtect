@@ -5,9 +5,10 @@ import { useCookie } from "../hooks/useCookie";
 export const queryClient = new QueryClient();
 
 const { getCookie } = useCookie();
+const url = "http://172.23.116.163:9000/api";
 
 const api = axios.create({
-  baseURL: "http://172.23.116.163:9000/api",
+  baseURL: url,
 });
 
 api.interceptors.request.use(
@@ -27,4 +28,4 @@ api.interceptors.request.use(
   }
 );
 
-export { api };
+export { api, url };

@@ -39,3 +39,14 @@
   color: var(--deep-blue);
   cursor: pointer;
 }
+.table {
+  :global(.p-column-title) {
+    color: var(--black);
+  }
+
+  * {
+    color: var(--deep-blue);
+  }
+}
+.edit {
+}
