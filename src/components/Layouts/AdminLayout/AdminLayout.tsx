@@ -2,10 +2,11 @@ import styles from "./AdminLayout.module.scss";
 import { LogoIcon } from "../../Icons/LogoIcon";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { Button } from "../../Button/Button";
+import { adminApiService } from "../../../api/entities/admin/admin.api";
 
 interface LayoutProps extends PropsWithChildren {
   path: string;
-  useSearch: any;
 }
 
 export const AdminLayout = (props: LayoutProps) => {
@@ -17,16 +18,31 @@ export const AdminLayout = (props: LayoutProps) => {
         <ul className={styles.links}>
           <li
             className={styles.link}
-            onClick={() => navigate({ search: { tab: "qwe" } })}
+            onClick={() => navigate({ search: { tab: "recommendations" } })}
           >
             Рекомендации
           </li>
-          <li className={styles.link}>Проекты</li>
-          <li className={styles.link}>Настройки</li>
+          <li
+            className={styles.link}
+            onClick={() => navigate({ search: { tab: "project" } })}
+          >
+            Проекты
+          </li>
+          <li
+            className={styles.link}
+            onClick={() => navigate({ search: { tab: "settings" } })}
+          >
+            Настройки
+          </li>
         </ul>
       </aside>
       <div className={styles.content}>
-        <header>qwe</header>
+        <header className={styles.header}>
+          <h1 className={styles.title}>ПАНЕЛЬ АДМИНИСТРАТОРА</h1>
+          <Button onClick={() => adminApiService.logOut()} variant="red">
+            Выйти
+          </Button>
+        </header>
         {props.children}
       </div>
     </div>

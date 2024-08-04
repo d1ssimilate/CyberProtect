@@ -4,6 +4,7 @@ export type TAdminAuthDtoRequest = {
 };
 export type TAdminAuthRequestData = {
   accessToken: string;
+  exp: number;
   refreshToken: string;
 };
 export type TAdminRequestData = {

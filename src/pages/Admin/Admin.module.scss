@@ -16,3 +16,26 @@
   flex-direction: column;
   gap: 15px;
 }
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.title {
+  color: var(--deep-blue);
+}
+.recommendations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.recommendation {
+  width: 120px;
+  aspect-ratio: 1;
+  background: var(--light-gray);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  color: var(--deep-blue);
+  cursor: pointer;
+}

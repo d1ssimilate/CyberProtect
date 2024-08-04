@@ -1,6 +1,6 @@
 .layout {
   display: flex;
-  gap: 15px;
+  gap: 30px;
 }
 .aside {
   width: 350px;
@@ -24,4 +24,19 @@
   path {
     fill: var(--white);
   }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--deep-blue);
+  border-radius: 0 0 6px 6px;
+  padding: 10px 20px;
 }

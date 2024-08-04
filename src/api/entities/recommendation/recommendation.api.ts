@@ -1,7 +1,16 @@
 import { api } from "../../instance";
-import { TRecommendationDtoRequest } from "./recommendation.types";
+import {
+  TRecommendationDtoRequest,
+  TRecommendationRequestData,
+} from "./recommendation.types";
 
 class RecommendationApi {
+  async getRecommendations() {
+    return api.get<TRecommendationRequestData[]>("/days/");
+  }
+  async getRecommendationsAdmin() {
+    return api.get<TRecommendationRequestData[]>("/days/admin");
+  }
   async postRecommendationRequest({
     config,
     params,

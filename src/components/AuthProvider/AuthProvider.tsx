@@ -1,8 +1,11 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { AuthContextType, User } from "./AuthProvider.types";
-import { ReactNode } from "@tanstack/react-router";
 import { useCookie } from "../../hooks/useCookie";
-import { useQuery } from "@tanstack/react-query";
+import {
+  isTokenExpired,
+  handleTokenCheck,
+  handleTokenRefresh,
+} from "../../utils/auth";
 import { adminApiService } from "../../api/entities/admin/admin.api";
 
 export const AuthContext = createContext<AuthContextType>({
@@ -10,42 +13,51 @@ export const AuthContext = createContext<AuthContextType>({
   admin: { isAuth: false },
 });
 
-export const AuthProvider = ({ children }: ReactNode) => {
-  const { getCookie } = useMemo(() => useCookie(), []);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const { getCookie, setCookie, clearCookies } = useMemo(() => useCookie(), []);
   const [user, setUser] = useState<User>({
-    isAuth: getCookie("l") ? true : false,
+    isAuth: !!getCookie("l"),
   });
   const [admin, setAdmin] = useState<User>({
-    isAuth: getCookie("a") ? true : false,
+    isAuth: !!getCookie("a"),
   });
 
-  if (getCookie("a") || getCookie("l")) {
-    const { data: adminData } = useQuery({
-      queryKey: ["admin"],
-      queryFn: () => adminApiService.adminCheckToken(),
-      enabled: !!getCookie("a"),
-    });
-    const { data: userData } = useQuery({
-      queryKey: ["user"],
-      queryFn: () => adminApiService.adminCheckToken(),
-      enabled: !!getCookie("l"),
-    });
+  const userRefreshToken = getCookie("userRefreshToken");
+  const userExp = getCookie("userExp");
 
-    useEffect(() => {
-      if (userData?.data) setUser({ ...userData.data, isAuth: true });
-      if (adminData?.data) setAdmin({ ...adminData.data, isAuth: true });
-    }, [userData?.data, adminData?.data]);
+  const adminRefreshToken = getCookie("a-refreshToken");
+  const adminExp = getCookie("a-exp");
 
-    // useEffect(() => {
-    //   if (userError instanceof AxiosError || adminError instanceof AxiosError) {
-    //     if (userError.) {
-    //       clearCookies("a");
-    //       if (window.location.pathname === "/admin/dashboard")
-    //         window.location.pathname = "/login";
-    //     }
-    //   }
-    // }, [error, setCookie]);
-  }
+  useEffect(() => {
+    const initAuth = async () => {
+      if (getCookie("a")) {
+        if (isTokenExpired(adminExp)) {
+          await handleTokenRefresh({
+            refreshToken: adminRefreshToken,
+            setAuthState: setAdmin,
+            expKey: "a-exp",
+            tokenKey: "a",
+          });
+        } else {
+          await handleTokenCheck({
+            checkTokenFn: adminApiService.adminCheckToken,
+            setAuthState: setAdmin,
+            expKey: "a-exp",
+            tokenKey: "a",
+          });
+        }
+      }
+    };
+
+    initAuth();
+  }, [
+    userExp,
+    userRefreshToken,
+    adminExp,
+    adminRefreshToken,
+    setCookie,
+    clearCookies,
+  ]);
 
   return (
     <AuthContext.Provider value={{ user, admin }}>

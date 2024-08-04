@@ -1,4 +1,4 @@
-// import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export type User = {
   login?: string;
@@ -10,6 +10,16 @@ export type User = {
 export type AuthContextType = {
   user: User;
   admin: User;
-  //   setUser: React.Dispatch<React.SetStateAction<User>>;
-  //   setAdmin: React.Dispatch<React.SetStateAction<User>>;
+};
+export type refreshTokenFN = {
+  refreshToken: string | undefined;
+  setAuthState: Dispatch<SetStateAction<User>>;
+  expKey: string;
+  tokenKey: string;
+};
+export type checkTokenFN = {
+  checkTokenFn: any;
+  setAuthState: Dispatch<SetStateAction<User>>;
+  expKey: string;
+  tokenKey: string;
 };

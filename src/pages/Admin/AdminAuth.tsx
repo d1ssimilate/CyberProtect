@@ -1,20 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import styles from "./Admin.module.scss";
 import { useAdminAuth } from "./hooks/useAdminAuth";
-import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 
 export const AdminAuth = () => {
   const { register, onSubmit, errors, handleSubmit, isPending, isSuccess } =
     useAdminAuth();
   useEffect(() => {
-    if (isSuccess) {
-      console.log(1);
-    }
+    if (isSuccess) window.location.replace("/admin/dashboard");
   }, [isSuccess]);
-  const { admin } = useContext(AuthContext);
-  console.log(admin);
 
   return (
     <div className={`container ${styles.auth}`}>
