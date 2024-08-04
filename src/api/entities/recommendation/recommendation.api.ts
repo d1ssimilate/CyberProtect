@@ -6,7 +6,9 @@ import {
 
 class RecommendationApi {
   async getRecommendations() {
-    return api.get<TRecommendationRequestData[]>("/days/");
+    const response = await api.get<TRecommendationRequestData[]>("/days/");
+    
+    return response;
   }
   async getRecommendationsAdmin() {
     return api.get<TRecommendationRequestData[]>("/days/admin");
