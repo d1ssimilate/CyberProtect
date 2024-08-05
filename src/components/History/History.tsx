@@ -1,4 +1,4 @@
-import { SnowflakeIcon } from "../Icons/SnowflakeIcon";
+import { SnowflakeIcon } from "../UI/Icons/SnowflakeIcon";
 import { historyAnimations } from "./History.animations";
 import styles from "./History.module.scss";
 import { motion } from "framer-motion";

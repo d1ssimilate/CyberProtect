@@ -1,19 +1,15 @@
 import styles from "./AdminLayout.module.scss";
-import { LogoIcon } from "../../Icons/LogoIcon";
-import { PropsWithChildren, useContext } from "react";
+import { PropsWithChildren } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Button } from "../../Button/Button";
+import { Button } from "../../UI/Button/Button";
 import { adminApiService } from "../../../api/entities/admin/admin.api";
-import { DialogContext } from "../../DialogProvier/DialogProvider";
-import { Modal } from "../../Modal/Modal";
-
+import { LogoIcon } from "../../UI/Icons/LogoIcon";
 interface LayoutProps extends PropsWithChildren {
   path: string;
 }
 
 export const AdminLayout = (props: LayoutProps) => {
   const navigate = useNavigate({ from: props.path });
-  const { data, nameModal, setDialog, title } = useContext(DialogContext);
   return (
     <div className={styles.layout}>
       <aside className={styles.aside}>
@@ -48,14 +44,6 @@ export const AdminLayout = (props: LayoutProps) => {
         </header>
         {props.children}
       </div>
-      {nameModal && (
-        <Modal
-          data={data}
-          title={title}
-          nameModal={nameModal}
-          setDialog={setDialog}
-        />
-      )}
     </div>
   );
 };

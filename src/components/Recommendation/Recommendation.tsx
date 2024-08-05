@@ -1,10 +1,7 @@
 import styles from "./Recommendation.module.scss";
-import {
-  TRecommendationAttachment,
-  TRecommendationRequestData,
-} from "../../api/entities/recommendation/recommendation.types";
+import { TRecommendationAttachment } from "../../api/entities/recommendation/recommendation.types";
 import { useContext } from "react";
-import { DialogContext } from "../DialogProvier/DialogProvider";
+import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { getImages } from "../../utils/getImages";
 
 interface RecommendationProps {

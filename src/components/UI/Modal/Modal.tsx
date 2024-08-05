@@ -4,8 +4,10 @@ import styles from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { CrossIcon } from "../Icons/CrossIcon";
-import { RecommendationEditDialog } from "../Dialog/RecommendationEdit";
-import { RecommendationDialog } from "../Dialog/Recommendation/Recommendation";
+import { RecommendationEditDialog } from "../../Dialog/RecommendationEdit";
+import { RecommendationDialog } from "../../Dialog/Recommendation/Recommendation";
+import { AuthEmailDialog } from "../../Dialog/Auth/AuthEmail";
+import { AuthPasswordDialog } from "../../Dialog/Auth/AuthPassword";
 
 interface ModalProps extends PropsWithChildren {
   nameModal: string;
@@ -49,6 +51,10 @@ export function Modal(props: ModalProps) {
               <RecommendationEditDialog />
             ) : props.nameModal === "Recommendation" ? (
               <RecommendationDialog />
+            ) : props.nameModal === "AuthEmail" ? (
+              <AuthEmailDialog />
+            ) : props.nameModal === "AuthPassword" ? (
+              <AuthPasswordDialog />
             ) : (
               ""
             )}

@@ -5,7 +5,7 @@ import { Loader } from "../../../components/Loader/Loader";
 import { AdminDataTable } from "../AdminDataTable";
 import { useContext, useEffect, useState } from "react";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
-import { DialogContext } from "../../../components/DialogProvier/DialogProvider";
+import { DialogContext } from "../../../components/Providers/DialogProvier/DialogProvider";
 
 export function AdminRecommendations() {
   const { data, isLoading } = useQuery({

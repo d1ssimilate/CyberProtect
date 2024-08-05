@@ -72,7 +72,7 @@ export function Calendar() {
       <h2 className={styles.title}>
         Адвент-календарь
         <br />
-        2024
+        на декабрь 2024
       </h2>
       {isLoading ? <Loader /> : <Masonry items={recommendationItems}></Masonry>}
     </div>

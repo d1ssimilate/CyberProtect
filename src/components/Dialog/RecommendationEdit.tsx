@@ -4,10 +4,10 @@ import {
   IRecommendationEditForm,
   useRecommendationEdit,
 } from "../../pages/Admin/hooks/useRecommendationEdit";
-import { Input } from "../Input/Input";
-import { DialogContext } from "../DialogProvier/DialogProvider";
+import { Input } from "../UI/Input/Input";
+import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../api/entities/recommendation/recommendation.types";
-import { Button } from "../Button/Button";
+import { Button } from "../UI/Button/Button";
 import { queryClient } from "../../api/instance";
 export function RecommendationEditDialog() {
   const { data: contextData, setDialog } = useContext(DialogContext);

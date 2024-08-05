@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Button } from "../../components/Button/Button";
+import { Button } from "../../components/UI/Button/Button";
 import styles from "./NotFound.module.scss";
 
 export function NotFoundPage() {
