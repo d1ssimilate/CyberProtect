@@ -23,12 +23,6 @@ export const AdminLayout = (props: LayoutProps) => {
           </li>
           <li
             className={styles.link}
-            onClick={() => navigate({ search: { tab: "project" } })}
-          >
-            Проекты
-          </li>
-          <li
-            className={styles.link}
             onClick={() => navigate({ search: { tab: "settings" } })}
           >
             Настройки

@@ -12,10 +12,6 @@ class RecommendationApi {
       params: { timeZone },
     });
   }
-  async getRecommendationsAdmin() {
-    return api.get<TRecommendationRequestData[]>("/days/admin");
-  }
-
   async putRecommendationRequest({
     config,
     params,

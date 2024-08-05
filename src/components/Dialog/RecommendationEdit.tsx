@@ -4,11 +4,11 @@ import {
   IRecommendationEditForm,
   useRecommendationEdit,
 } from "../../pages/Admin/hooks/useRecommendationEdit";
-import { Input } from "../UI/Input/Input";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../api/entities/recommendation/recommendation.types";
 import { Button } from "../UI/Button/Button";
 import { queryClient } from "../../api/instance";
+import { Textarea } from "../UI/Textarea/Textarea";
 export function RecommendationEditDialog() {
   const { data: contextData, setDialog } = useContext(DialogContext);
   const dialogData = contextData as TRecommendationRequestData;
@@ -35,13 +35,13 @@ export function RecommendationEditDialog() {
   return (
     <div className={styles.edit}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <Input
+        <Textarea
           error={errors.title?.message}
           {...register("title", { required: "Обязательное поле" })}
           placeholder="Заголовок"
           label="Заголовок"
         />
-        <Input
+        <Textarea
           error={errors.description?.message}
           {...register("description", { required: "Обязательное поле" })}
           placeholder="Описание"

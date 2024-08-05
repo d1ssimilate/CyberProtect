@@ -1,4 +1,5 @@
 import { Route } from "../../routes/admin/dashboard";
+import { AdminSettings } from "./settings/AdminSettings";
 import { AdminRecommendations } from "./recommendations/AdminRecommendations";
 
 export function AdminDashboard() {
@@ -8,6 +9,8 @@ export function AdminDashboard() {
     switch (tab) {
       case "recommendations":
         return <AdminRecommendations />;
+      case "settings":
+        return <AdminSettings />;
 
       default:
         return <AdminRecommendations />;

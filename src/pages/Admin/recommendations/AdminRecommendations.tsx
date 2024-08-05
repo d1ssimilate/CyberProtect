@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { recommendationApiService } from "../../../api/entities/recommendation/recommendation.api";
 import styles from "../Admin.module.scss";
-import { Loader } from "../../../components/Loader/Loader";
+import { Loader } from "../../../components/UI/Loader/Loader";
 import { AdminDataTable } from "../AdminDataTable";
 import { useContext, useEffect, useState } from "react";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
 import { DialogContext } from "../../../components/Providers/DialogProvier/DialogProvider";
+import { adminApiService } from "../../../api/entities/admin/admin.api";
 
 export function AdminRecommendations() {
   const { data, isLoading } = useQuery({
     queryKey: ["recommendations"],
-    queryFn: () => recommendationApiService.getRecommendationsAdmin(),
+    queryFn: () => adminApiService.getRecommendations(),
   });
   const { setDialog } = useContext(DialogContext);
   const [selectedRecommendation, setSelectedRecommendation] =

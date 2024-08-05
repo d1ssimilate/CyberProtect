@@ -80,3 +80,13 @@ body {
     font-size: 18px;
   }
 }
+.p-dropdown-items {
+  .p-dropdown-item-label {
+    color: var(--deep-blue);
+    font-size: 20px;
+  }
+}
+.p-dropdown-label,
+.p-icon {
+  font-size: 20px;
+}

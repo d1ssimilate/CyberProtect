@@ -8,7 +8,8 @@
           svg,
           video,
           audio,
-          input[type="radio"]
+          input[type="radio"],
+          input[type="checkbox"]
         ):not(svg *, symbol *)
     ) {
     all: unset;

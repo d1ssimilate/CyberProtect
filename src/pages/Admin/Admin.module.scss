@@ -41,10 +41,21 @@
 }
 .table {
   :global(.p-column-title) {
+    font-size: 20px;
     color: var(--black);
   }
-
+  td {
+    font-size: 18px;
+  }
   * {
     color: var(--deep-blue);
   }
+}
+.select {
+  * {
+    color: var(--deep-blue);
+  }
+}
+.subtitle {
+  color: var(--black);
 }

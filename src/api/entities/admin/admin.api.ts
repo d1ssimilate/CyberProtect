@@ -1,7 +1,12 @@
 import { useCookie } from "../../../hooks/useCookie";
 import { api } from "../../instance";
+import { TRecommendationRequestData } from "../recommendation/recommendation.types";
 import { TUserAuthPasswordDataRequest } from "../user/user.types";
-import { TAdminAuthDtoRequest } from "./admin.types";
+import {
+  TAdminAuthDtoRequest,
+  TSettingDataRequest,
+  TSettingsDtoRequest,
+} from "./admin.types";
 
 const { setCookie, clearCookies } = useCookie();
 class AdminApi {
@@ -23,6 +28,22 @@ class AdminApi {
       setCookie("a-exp", response.data.exp.toString());
       setCookie("a-refreshToken", response.data.refreshToken);
     }
+    return response;
+  }
+  async getRecommendations() {
+    return api.get<TRecommendationRequestData[]>("/days/admin");
+  }
+  async getSettings() {
+    return api.get<TSettingDataRequest>("/settings");
+  }
+  async putSettings({
+    config,
+    params,
+  }: AxiosRequestConfig<TSettingsDtoRequest>) {
+    const formData = new FormData();
+    formData.append("month", params.month!.toString());
+    formData.append("showAllDays", params.showAllDays.toString());
+    const response = await api.put("/settings", formData, config);
     return response;
   }
 

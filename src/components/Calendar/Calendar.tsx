@@ -4,7 +4,7 @@ import styles from "./Calendar.module.scss";
 import { Masonry } from "../Masonry/Masonry";
 import { useQuery } from "@tanstack/react-query";
 import { recommendationApiService } from "../../api/entities/recommendation/recommendation.api";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "../UI/Loader/Loader";
 import { getImages } from "../../utils/getImages";
 
 export function Calendar() {
