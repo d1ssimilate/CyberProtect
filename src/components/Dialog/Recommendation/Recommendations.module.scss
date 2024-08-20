@@ -19,3 +19,11 @@ video,
 .img {
   width: 100%;
 }
+.link {
+  background: var(--orange);
+  display: grid;
+  place-content: center;
+  padding: 8px 0;
+  font-size: 18px;
+  border-radius: 8px;
+}

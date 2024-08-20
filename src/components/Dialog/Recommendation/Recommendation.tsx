@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import styles from "./Recommendations.module.scss";
 import { DialogContext } from "../../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
 import { url } from "../../../api/instance";
 import { Image } from "primereact/image";
+import { Link } from "@tanstack/react-router";
 
 export function RecommendationDialog() {
   const { data: ContextData } = useContext(DialogContext);
@@ -13,10 +14,10 @@ export function RecommendationDialog() {
     <div className={styles.content}>
       <p className={styles.description}>{data.description}</p>
       {data.attachments &&
-        data.attachments.map((item) => {
+        data.attachments.map((item, idx) => {
           const fileUrl = `${url}${item.url}`;
           return (
-            <>
+            <Fragment key={idx}>
               {item.type === "image" ? (
                 <Image
                   className={styles.img}
@@ -31,9 +32,14 @@ export function RecommendationDialog() {
                   {item.label}
                 </span>
               )}
-            </>
+            </Fragment>
           );
         })}
+      {data.isLongRead && (
+        <Link className={styles.link} to={`/recommendation/${data.id}`}>
+          Подробнее
+        </Link>
+      )}
     </div>
   );
 }

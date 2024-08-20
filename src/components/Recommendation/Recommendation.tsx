@@ -21,6 +21,7 @@ export function Recommendation(props: RecommendationProps) {
         number: props.item.id,
       });
   };
+
   return (
     <div
       data-preview={getImages()[imageIndex]}
