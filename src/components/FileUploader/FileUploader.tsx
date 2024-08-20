@@ -3,10 +3,11 @@ import { CrossIcon } from "../UI/Icons/CrossIcon";
 import styles from "./FileUploader.module.scss";
 import { useState, useEffect, ChangeEvent } from "react";
 import { url } from "../../api/instance";
+import { TRecommendationAttachment } from "../../api/entities/recommendation/recommendation.types";
 
 interface FileUploadProps {
-  files: any[];
-  setFiles: (files: File[]) => void;
+  files: (File | TRecommendationAttachment)[];
+  setFiles: (files: (File | TRecommendationAttachment)[]) => void;
 }
 
 export const FileUploader = (props: FileUploadProps) => {
@@ -27,7 +28,7 @@ export const FileUploader = (props: FileUploadProps) => {
     }
   };
 
-  const handleRemoveFile = (fileToRemove: File) => {
+  const handleRemoveFile = (fileToRemove: File | TRecommendationAttachment) => {
     setLocalFiles((prevFiles) => {
       const updatedFiles = prevFiles.filter((file) => file !== fileToRemove);
       props.setFiles(updatedFiles);

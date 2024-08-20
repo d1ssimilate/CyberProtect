@@ -5,7 +5,10 @@ import {
   useRecommendationEdit,
 } from "../../pages/Admin/hooks/useRecommendationEdit";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
-import { TRecommendationRequestData } from "../../api/entities/recommendation/recommendation.types";
+import {
+  TRecommendationAttachment,
+  TRecommendationRequestData,
+} from "../../api/entities/recommendation/recommendation.types";
 import { Button } from "../UI/Button/Button";
 import { queryClient } from "../../api/instance";
 import { Textarea } from "../UI/Textarea/Textarea";
@@ -21,8 +24,8 @@ export function RecommendationEditDialog() {
     });
 
   const [isLongRead, setIsLongRead] = useState(dialogData.isLongRead);
-  const [files, setFiles] = useState(
-    dialogData.attachments ? dialogData.attachments : []
+  const [files, setFiles] = useState<(File | TRecommendationAttachment)[]>(
+    dialogData.attachments ? dialogData.attachments : ([] as File[])
   );
 
   const onSubmit = (data: IRecommendationEditForm) => {
@@ -32,7 +35,9 @@ export function RecommendationEditDialog() {
       isLongRead: isLongRead,
       id: dialogData.id,
       attachments: files.filter((item) => item instanceof File),
-      attachmentIds: files.filter((item) => item.id !== undefined),
+      attachmentIds: files.filter(
+        (item) => !(item instanceof File)
+      ) as TRecommendationAttachment[],
     });
   };
   useEffect(() => {
@@ -59,7 +64,9 @@ export function RecommendationEditDialog() {
         />
         <FileUploader
           files={files}
-          setFiles={(newFiles: any[]) => setFiles(newFiles)}
+          setFiles={(newFiles: (File | TRecommendationAttachment)[]) =>
+            setFiles(newFiles)
+          }
         />
         <p className={styles.longRead}>
           Лонгрид
