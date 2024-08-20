@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../../pages/Admin/Admin.module.scss";
 import {
   IRecommendationEditForm,
@@ -9,6 +9,8 @@ import { TRecommendationRequestData } from "../../api/entities/recommendation/re
 import { Button } from "../UI/Button/Button";
 import { queryClient } from "../../api/instance";
 import { Textarea } from "../UI/Textarea/Textarea";
+import { Checkbox } from "../UI/Checkbox";
+import { FileUploader } from "../FileUploader/FileUploader";
 export function RecommendationEditDialog() {
   const { data: contextData, setDialog } = useContext(DialogContext);
   const dialogData = contextData as TRecommendationRequestData;
@@ -18,11 +20,19 @@ export function RecommendationEditDialog() {
       title: String(dialogData.title),
     });
 
+  const [isLongRead, setIsLongRead] = useState(dialogData.isLongRead);
+  const [files, setFiles] = useState(
+    dialogData.attachments ? dialogData.attachments : []
+  );
+
   const onSubmit = (data: IRecommendationEditForm) => {
     mutate({
       description: data.description,
       title: data.title,
+      isLongRead: isLongRead,
       id: dialogData.id,
+      attachments: files.filter((item) => item instanceof File),
+      attachmentIds: files.filter((item) => item.id !== undefined),
     });
   };
   useEffect(() => {
@@ -47,6 +57,14 @@ export function RecommendationEditDialog() {
           placeholder="Описание"
           label="Описание"
         />
+        <FileUploader
+          files={files}
+          setFiles={(newFiles: any[]) => setFiles(newFiles)}
+        />
+        <p className={styles.longRead}>
+          Лонгрид
+          <Checkbox active={isLongRead} onChange={setIsLongRead} />
+        </p>
         <Button
           type="submit"
           loading={isPending ? "true" : undefined}

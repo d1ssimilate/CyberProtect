@@ -11,16 +11,14 @@ export type TRecommendationRequestData = {
   description: string;
   id: number;
   title: string;
+  isLongRead: boolean;
   attachments?: TRecommendationAttachment[];
 };
-// export type TRecommendationDtoRequest = {
-//   title: string;
-//   description: string;
-//   attachments?: File[];
-// };
 export type TRecommendationEditDtoRequest = {
   id: number;
   description: string;
+  isLongRead: boolean;
   attachments?: File[];
+  attachmentIds?: TRecommendationAttachment[];
   title: string;
 };

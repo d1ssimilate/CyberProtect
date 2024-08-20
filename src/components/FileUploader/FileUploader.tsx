@@ -1,55 +1,76 @@
-import { useState, useEffect, ChangeEvent, FC } from "react";
+import { Image } from "primereact/image";
+import { CrossIcon } from "../UI/Icons/CrossIcon";
+import styles from "./FileUploader.module.scss";
+import { useState, useEffect, ChangeEvent } from "react";
+import { url } from "../../api/instance";
 
-// Типы для пропсов
-type FileUploadProps = {
-  files: File[];
+interface FileUploadProps {
+  files: any[];
   setFiles: (files: File[]) => void;
-};
+}
 
-export const FileUploader: FC<FileUploadProps> = ({ files, setFiles }) => {
-  const [localFiles, setLocalFiles] = useState<File[]>(files);
+export const FileUploader = (props: FileUploadProps) => {
+  const [localFiles, setLocalFiles] = useState(props.files ?? []);
 
   useEffect(() => {
-    // Обновление локального состояния при изменении пропсов
-    setLocalFiles(files);
-  }, [files]);
+    setLocalFiles(props.files ?? []);
+  }, [props.files]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const newFiles = Array.from(event.target.files);
       setLocalFiles((prevFiles) => {
         const updatedFiles = [...prevFiles, ...newFiles];
-        // Обновляем файлы в родительском компоненте
-        setFiles(updatedFiles);
+        props.setFiles(updatedFiles);
         return updatedFiles;
       });
     }
   };
 
-  const renderFilePreview = (file: File) => {
-    console.log(file);
-
-    const fileUrl = URL.createObjectURL(file);
-
-    if (file.type.startsWith("image/")) {
-      return (
-        <img src={fileUrl} alt={file.name} className="w-32 h-32 object-cover" />
-      );
-    } else if (file.type.startsWith("video/")) {
-      return (
-        <video src={fileUrl} controls className="w-32 h-32 object-cover" />
-      );
-    } else {
-      return <p>{file.name}</p>;
-    }
+  const handleRemoveFile = (fileToRemove: File) => {
+    setLocalFiles((prevFiles) => {
+      const updatedFiles = prevFiles.filter((file) => file !== fileToRemove);
+      props.setFiles(updatedFiles);
+      return updatedFiles;
+    });
   };
 
+  const renderFilePreview = (file: any) => {
+    const isFile = file instanceof File;
+    const fileUrl = isFile ? URL.createObjectURL(file) : `${url}${file.url}`;
+
+    if (file.type.includes("image")) {
+      return (
+        <Image
+          className={styles.img}
+          src={fileUrl}
+          alt={file.name}
+          preview={true}
+        />
+      );
+    } else if (file.type.includes("video")) {
+      return <video src={fileUrl} controls />;
+    } else {
+      return (
+        <p style={{ color: "var(--deep-blue)" }}>
+          {file.name ? file.name : file.label}
+        </p>
+      );
+    }
+  };
   return (
-    <div>
-      <input type="file" multiple onChange={handleFileChange} />
-      <div className="mt-4">
+    <div className={styles.container}>
+      <div className={styles.input}>
+        <input type="file" multiple onChange={handleFileChange} />
+        Добавить файлы
+      </div>
+      <div className={styles.files}>
         {localFiles.map((file, index) => (
-          <div key={index} className="mb-4">
+          <div key={index} className={styles.file}>
+            <CrossIcon
+              onClick={() => handleRemoveFile(file)}
+              className={styles.close}
+            />
             {renderFilePreview(file)}
           </div>
         ))}

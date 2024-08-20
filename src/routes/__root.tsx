@@ -15,17 +15,17 @@ export const Route = createRootRoute({
   ),
 });
 const InnerApp = () => {
-  const { data, nameModal, setDialog, title } = useContext(DialogContext);
+  const { data, nameModal, setDialog, title, containerClassName } =
+    useContext(DialogContext);
   return (
     <>
-      {nameModal && (
-        <Modal
-          data={data}
-          title={title}
-          nameModal={nameModal}
-          setDialog={setDialog}
-        />
-      )}
+      <Modal
+        data={data}
+        title={title}
+        nameModal={nameModal}
+        setDialog={setDialog}
+        containerClassName={containerClassName}
+      />
       <Outlet />
       <Toaster />
     </>

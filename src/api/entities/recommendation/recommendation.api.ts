@@ -19,9 +19,14 @@ class RecommendationApi {
     const formData = new FormData();
     formData.append("title", params.title);
     formData.append("description", params.description);
+    formData.append("isLongRead", String(params.isLongRead));
     if (params.attachments)
       for (const attachment of params.attachments) {
         formData.append("attachments", attachment);
+      }
+    if (params.attachmentIds)
+      for (const attachment of params.attachmentIds) {
+        formData.append("attachmentIds", String(attachment.id));
       }
     const response = await api.put(`/days/${params.id}`, formData, config);
     return response;

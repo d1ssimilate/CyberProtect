@@ -59,3 +59,16 @@
 .subtitle {
   color: var(--black);
 }
+.longRead {
+  display: flex;
+  align-items: center;
+  color: var(--deep-blue);
+  font-size: 18px;
+  input {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+.edit {
+  max-width: 650px;
+}

@@ -7,7 +7,7 @@ import { TResponseMessage } from "../types/response.types";
 export const queryClient = new QueryClient();
 
 const { getCookie } = useCookie();
-const url = "http://172.23.116.163:9000/api";
+const url = "http://172.23.159.122:5050/api";
 
 const api = axios.create({
   baseURL: url,

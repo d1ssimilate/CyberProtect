@@ -5,24 +5,26 @@ export const DialogContext = createContext<DialogContextType>({
   nameModal: "",
   title: "",
   data: null,
+  containerClassName: "",
   setDialog: () => {},
 });
 
 export const DialogProvider = ({ children }: { children: ReactNode }) => {
   const [nameModal, setNameModal] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+  const [containerClassName, setContainerClassName] = useState<string>("");
   const [data, setData] = useState<unknown>(null);
 
   const resetDialog = () => {
     setNameModal("");
     setTitle("");
-    setData(null);
   };
 
   const setDialog = (
     nameModal: string,
     title: string = "",
-    data: unknown = null
+    data: unknown = null,
+    containerClassName: string = ""
   ) => {
     if (nameModal === "close") {
       resetDialog();
@@ -30,6 +32,7 @@ export const DialogProvider = ({ children }: { children: ReactNode }) => {
       setNameModal(nameModal);
       setTitle(title);
       setData(data);
+      setContainerClassName(containerClassName);
     }
   };
 
@@ -38,7 +41,9 @@ export const DialogProvider = ({ children }: { children: ReactNode }) => {
   }, [nameModal]);
 
   return (
-    <DialogContext.Provider value={{ nameModal, title, data, setDialog }}>
+    <DialogContext.Provider
+      value={{ containerClassName, nameModal, title, data, setDialog }}
+    >
       {children}
     </DialogContext.Provider>
   );

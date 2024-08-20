@@ -14,6 +14,7 @@ interface ModalProps extends PropsWithChildren {
   data: any;
   title: string;
   setDialog: (nameModal: string) => void;
+  containerClassName?: string;
 }
 
 export function Modal(props: ModalProps) {
@@ -24,7 +25,7 @@ export function Modal(props: ModalProps) {
       <motion.div className={styles.modal} {...modalAnimations.root}>
         <motion.div
           ref={modalRef}
-          className={styles.inner}
+          className={`${styles.inner} ${props.containerClassName ? props.containerClassName : ""}`}
           {...modalAnimations.content}
         >
           <div className={styles.content}>

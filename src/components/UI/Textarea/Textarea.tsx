@@ -12,7 +12,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <span className={styles.label}>{props.label}</span>
         <textarea
           ref={ref}
-          placeholder={props.placeholder}
+          {...props}
           className={`${styles.input} ${styles.textarea}`}
         />
         {props.error && <span className={styles.error}>{props.error}</span>}
