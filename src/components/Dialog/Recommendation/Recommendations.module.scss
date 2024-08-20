@@ -3,3 +3,19 @@
   font-size: 20px;
   white-space: preserve;
 }
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.img {
+  img {
+    object-fit: contain;
+    max-height: 200px;
+    width: 100%;
+  }
+}
+video,
+.img {
+  width: 100%;
+}
