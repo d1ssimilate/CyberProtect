@@ -10,7 +10,6 @@ import { userApiService } from "../../../api/entities/user/user.api";
 
 export const AuthContext = createContext<AuthContextType>({
   user: { isAuth: false },
-  admin: { isAuth: false },
   setUser: () => {},
 });
 
@@ -39,38 +38,31 @@ const checkAndRefreshToken = async (
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { getCookie, setCookie, clearCookies } = useMemo(() => useCookie(), []);
-  const [user, setUser] = useState<User>({ isAuth: !!getCookie("l") });
-  const [admin, setAdmin] = useState<User>({ isAuth: !!getCookie("a") });
+  const [user, setUser] = useState<User>({
+    isAuth: !!getCookie("accessToken"),
+  });
 
-  const userRefreshToken = getCookie("l-refreshToken");
-  const userExp = getCookie("l-exp");
-
-  const adminRefreshToken = getCookie("a-refreshToken");
-  const adminExp = getCookie("a-exp");
+  const refreshToken = getCookie("refreshToken");
+  const exp = getCookie("exp");
 
   useEffect(() => {
-    const initAuth = async () => {
-      if (getCookie("a")) {
-        await checkAndRefreshToken("a", adminRefreshToken, "a-exp", setAdmin);
-      }
-      if (getCookie("l")) {
-        await checkAndRefreshToken("l", userRefreshToken, "l-exp", setUser);
-      }
-    };
+    if (getCookie("accessToken")) {
+      const initAuth = async () => {
+        await checkAndRefreshToken("accessToken", refreshToken, exp!, setUser);
+      };
 
-    initAuth();
-  }, [
-    getCookie,
-    userExp,
-    userRefreshToken,
-    adminExp,
-    adminRefreshToken,
-    setCookie,
-    clearCookies,
-  ]);
+      initAuth();
+
+      const interval = setInterval(() => {
+        checkAndRefreshToken("accessToken", refreshToken, exp!, setUser);
+      }, 60000);
+
+      return () => clearInterval(interval);
+    }
+  }, [getCookie, exp, refreshToken, setCookie, clearCookies]);
 
   return (
-    <AuthContext.Provider value={{ user, admin, setUser }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

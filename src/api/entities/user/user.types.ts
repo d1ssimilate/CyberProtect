@@ -1,5 +1,6 @@
 export type TUserAuthEmailDtoRequest = {
   email: string;
+  password?: string;
 };
 export type TUserAuthPasswordDtoRequest = {
   email: string;

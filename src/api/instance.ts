@@ -23,9 +23,7 @@ function isResponseMessage(data: any): data is TResponseMessage {
 
 api.interceptors.request.use(
   (config) => {
-    const token = window.location.pathname.startsWith("/admin")
-      ? getCookie("a")
-      : getCookie("l");
+    const token = getCookie("accessToken");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -48,6 +46,12 @@ api.interceptors.response.use(
   },
   (error) => {
     const errorMessage = error.response.data as TResponseMessage;
+    if (
+      error.response.status === 401 &&
+      window.location.pathname === "/admin/dashboard"
+    )
+      window.location.replace("/admin");
+
     useToast(errorMessage.success, errorMessage.message);
     return Promise.reject(error);
   }

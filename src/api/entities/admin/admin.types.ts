@@ -1,5 +1,5 @@
 export type TAdminAuthDtoRequest = {
-  login: string;
+  email: string;
   password: string;
 };
 export type TSettingDataRequest = {

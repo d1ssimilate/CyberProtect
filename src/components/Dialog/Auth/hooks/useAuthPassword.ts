@@ -28,15 +28,17 @@ export const useAuthPassword = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setCookie("l", data.data.accessToken);
-      setCookie("l-exp", data.data.exp.toString());
-      setCookie("l-refreshToken", data.data.refreshToken);
+      setCookie("accessToken", data.data.accessToken);
+      setCookie("exp", data.data.exp.toString());
+      setCookie("refreshToken", data.data.refreshToken);
       setUser({ isAuth: true });
       setDialog("close");
     }
   }, [isSuccess]);
 
   const onSubmit = (data: IAuthPasswordForm) => {
+    console.log(user);
+
     mutate({ email: user.email!, code: data.code });
   };
   return {
