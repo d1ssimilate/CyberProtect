@@ -12,6 +12,9 @@ class RecommendationApi {
       params: { timeZone },
     });
   }
+  async postRecommendationCreateView(id: number) {
+    return api.post(`/days/${id}/views`);
+  }
   async putRecommendationRequest({
     config,
     params,

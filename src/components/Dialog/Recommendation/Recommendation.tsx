@@ -1,14 +1,29 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import styles from "./Recommendations.module.scss";
 import { DialogContext } from "../../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
 import { url } from "../../../api/instance";
 import { Image } from "primereact/image";
 import { Link } from "@tanstack/react-router";
+import { useCookie } from "../../../hooks/useCookie";
+import { recommendationApiService } from "../../../api/entities/recommendation/recommendation.api";
+import { useMutation } from "@tanstack/react-query";
 
 export function RecommendationDialog() {
   const { data: ContextData } = useContext(DialogContext);
   const data = ContextData as TRecommendationRequestData;
+  const { getCookie } = useCookie();
+  const accessToken = getCookie("accessToken");
+
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      recommendationApiService.postRecommendationCreateView(data.id),
+  });
+  useEffect(() => {
+    if (accessToken && data) {
+      mutate();
+    }
+  }, [accessToken, data]);
 
   return (
     <div className={styles.content}>

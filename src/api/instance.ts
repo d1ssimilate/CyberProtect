@@ -39,7 +39,8 @@ api.interceptors.response.use(
   (response) => {
     if (
       isResponseMessage(response.data) &&
-      response.data.message !== "Просморт засчитан"
+      response.data.message !== "Просморт засчитан" &&
+      response.data.message !== "Просмотр засчитан"
     )
       useToast(response.data.success, response.data.message);
 
