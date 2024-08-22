@@ -37,8 +37,6 @@ export const useAuthPassword = () => {
   }, [isSuccess]);
 
   const onSubmit = (data: IAuthPasswordForm) => {
-    console.log(user);
-
     mutate({ email: user.email!, code: data.code });
   };
   return {

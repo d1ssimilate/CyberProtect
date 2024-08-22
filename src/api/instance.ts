@@ -32,14 +32,15 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log(123);
-
     return Promise.reject(error);
   }
 );
 api.interceptors.response.use(
   (response) => {
-    if (isResponseMessage(response.data))
+    if (
+      isResponseMessage(response.data) &&
+      response.data.message !== "Просморт засчитан"
+    )
       useToast(response.data.success, response.data.message);
 
     return response;

@@ -10,8 +10,6 @@ import { LogoIcon } from "../UI/Icons/LogoIcon";
 export function Header() {
   const { setDialog } = useContext(DialogContext);
   const { user } = useContext(AuthContext);
-  console.log(user);
-
   return (
     <header className={styles.header}>
       <div className={`container ${styles.container}`}>

@@ -25,8 +25,6 @@ class UserApi {
     params,
   }: AxiosRequestConfig<TUserAuthPasswordDtoRequest>) {
     const formData = new FormData();
-    console.log(params);
-
     formData.append("email", params.email);
     formData.append("code", params.code);
     const response = await api.patch<TUserAuthPasswordDataRequest>(
