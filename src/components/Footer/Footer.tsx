@@ -14,10 +14,9 @@ export function Footer() {
           Все права защищены
           <br />© 2024
         </div>
-        <div className={styles.copyright}>
-          Счетчик
-          <br />
-          {data?.data.count}
+        <div className={styles.counter}>
+          Счетчик:
+          <span>{data?.data.count}</span>
         </div>
       </div>
     </footer>

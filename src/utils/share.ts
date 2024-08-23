@@ -1,21 +1,15 @@
-import { useLocation, useNavigate } from "@tanstack/react-router"
+interface ShareParams {
+  socialMedia: "vk" | "telegram" | "whatsapp";
+  text: string;
+  pathname: string;
+}
 
-type SocialMedia = 'vk'|'telegram'|'whatsapp';
-
-export const share = (socialMedia: SocialMedia, text: string) => {    
-    const { pathname } = useLocation();    
-
-    const navigate = useNavigate({from: '/'});
-
-    const socialMedias = {
-        vk: () => navigate({to: `https://vk.com/share.php?url=${pathname}`}),
-
-        telegram: () => navigate({to: `https://telegram.me/share/url?url=${pathname}&text=${text}/api/`}),
-
-        whatsapp: () => navigate({to: `https://api.whatsapp.com/send?text=${text}/api/`}),
-    }
-
-    const navigateToSocialMedia = socialMedias[socialMedia];
-
-    navigateToSocialMedia();
+export function ShareTo(params: ShareParams) {
+  const link = {
+    telegram: () =>
+      `https://telegram.me/share/url?url=${params.pathname}&text=${String(params.text)}`,
+    vk: () => `https://vk.com/share.php?url=${params.pathname}`,
+    whatsapp: () => `https://api.whatsapp.com/send?text=${params.text}/api/`,
+  };
+  return window.open(link[params.socialMedia](), "_blank");
 }

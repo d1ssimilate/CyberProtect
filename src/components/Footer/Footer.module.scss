@@ -11,10 +11,19 @@
     height: 45px;
   }
 }
-.copyright {
+.copyright,
+.counter {
   color: var(--light-gray);
   font-size: 24px;
   @media (max-width: 575.98px) {
     font-size: 16px;
   }
+  span {
+    font-size: inherit;
+    color: currentColor;
+  }
+}
+.counter {
+  display: flex;
+  gap: 3px;
 }
