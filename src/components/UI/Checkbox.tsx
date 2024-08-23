@@ -1,17 +1,13 @@
 import {
-  ChangeEvent,
   ComponentProps,
-  Dispatch,
   forwardRef,
-  SetStateAction,
-  useState,
 } from "react";
 
 import styles from "./Input/Input.module.scss";
 interface CheckboxProps extends ComponentProps<"input"> {
   active?: boolean;
   error?: string;
-  showIsConfirm: boolean,
+  showIsConfirm?: boolean,
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(

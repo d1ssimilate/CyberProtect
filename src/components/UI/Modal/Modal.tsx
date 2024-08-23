@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef } from "react";
+import { ComponentElement, PropsWithChildren, useRef } from "react";
 import { modalAnimations } from "./Modal.animatios";
 import styles from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,23 +10,19 @@ import { AuthEmailDialog } from "../../Dialog/Auth/AuthEmail";
 import { AuthPasswordDialog } from "../../Dialog/Auth/AuthPassword";
 import { Subscribe } from "../../Dialog/Subscribe/Subscribe";
 
+type modalsName =string
 interface ModalProps extends PropsWithChildren {
-  nameModal: string;
+  nameModal: modalsName;
   data: any;
   title: string;
   setDialog: (nameModal: string) => void;
   containerClassName?: string;
 }
 
-type modalsName =
-  | "RecommendationEdit"
-  | "Recommendation"
-  | "AuthEmailDialog"
-  | "AuthPassword"
-  | "Subscribe"
+
 
 const getModal = (name: modalsName) => {
-  const modals = {
+  const modals: any = {
     RecommendationEdit: () => <RecommendationEditDialog />,
     Recommendation: () => <RecommendationDialog />,
     AuthEmail: () => <AuthEmailDialog />,
@@ -36,7 +32,7 @@ const getModal = (name: modalsName) => {
 
   const useComponent = modals[name];
 
-  return useComponent?.();
+  return useComponent();
 };
 
 export function Modal(props: ModalProps) {

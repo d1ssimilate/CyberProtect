@@ -49,7 +49,10 @@ class UserApi {
   async subscribe({params} : AxiosRequestConfig<TUserSubscribe>) {
     const formData = new FormData();
 
-    for(const key in params) formData.append(key, params[key]);
+    formData.append('email', params.email);
+    formData.append('isConfirm', String(params.isConfirm));
+    formData.append('nickname', params.nickname);
+    formData.append('tgUsername', params.tgUsername);
 
     const response = await api.post("/users/subscribe", formData);
     return response.data;

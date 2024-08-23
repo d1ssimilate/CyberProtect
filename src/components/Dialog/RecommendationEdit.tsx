@@ -70,7 +70,7 @@ export function RecommendationEditDialog() {
         />
         <p className={styles.longRead}>
           Лонгрид
-          <Checkbox active={isLongRead} onChange={setIsLongRead} />
+          <Checkbox active={isLongRead} onChange={()=> setIsLongRead(!isLongRead)} />
         </p>
         <Button
           type="submit"
