@@ -5,6 +5,7 @@ import { routeTree } from "./routeTree.gen";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primeicons/primeicons.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./api/instance";
 import { AuthProvider } from "./components/Providers/AuthProvider/AuthProvider";

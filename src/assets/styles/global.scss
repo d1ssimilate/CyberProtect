@@ -41,8 +41,8 @@ body {
   }
 }
 * {
-  color: var(--white);
-  font-size: 30px;
+  color: var(--deep-blue);
+  font-size: 20px;
   font-weight: 500;
   font-family:
     Loos,
@@ -70,11 +70,15 @@ body {
     color: var(--black);
     font-size: 16px;
   }
-  
+
   @include reset();
 
-  :is(ul, li, .p-menuitem-text, .p-menuitem-link, .p-menuitem-content) { @include reset(); }
-  :is(.p-menuitem-text, .p-menuitem-link) { font-weight: normal; }
+  :is(ul, li, .p-menuitem-text, .p-menuitem-link, .p-menuitem-content) {
+    @include reset();
+  }
+  :is(.p-menuitem-text, .p-menuitem-link) {
+    font-weight: normal;
+  }
 }
 
 .layout {
@@ -108,4 +112,9 @@ body {
 .p-dropdown-label,
 .p-icon {
   font-size: 20px;
+}
+.p-image-preview-icon {
+  path {
+    color: var(--white);
+  }
 }

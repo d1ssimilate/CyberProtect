@@ -1,6 +1,6 @@
 .container {
-  background: var(--deep-blue);
-  background: linear-gradient(110deg, var(--deep-blue) 0%, var(--blue) 100%);
+  // background: var(--deep-blue);
+  background: var(--main-gradient);
   padding: 48px 0;
 }
 .content {
@@ -17,7 +17,7 @@
 .title {
   font-size: 38px;
   font-weight: 700;
-  color: var(--orange);
+  color: var(--white);
   @media (max-width: 767.98px) {
     font-size: 30px;
   }
@@ -25,65 +25,69 @@
     font-size: 26px;
   }
 }
-.slide {
+.card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
-  gap: 48px;
-  align-items: center;
-  @media (max-width: 767.98px) {
-    gap: 30px;
+  &__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
   }
-  @media (max-width: 575.98px) {
-    gap: 20px;
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
   }
-}
-.preview {
-  display: flex;
-  place-content: center;
-  img {
-    object-fit: cover;
-    max-width: 650px;
-    height: 360px;
-    width: 100%;
-    border-radius: 4px;
-    @media (max-width: 767.98px) {
-      height: 280px;
-    }
-    @media (max-width: 575.98px) {
-      height: 200px;
-      max-width: 95%;
-    }
-  }
-}
-.project {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  @media (max-width: 767.98px) {
-    gap: 10px;
+  &__name,
+  &__description {
+    color: white;
   }
   &__name {
-    font-size: 38px;
-    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    @media (max-width: 767.98px) {
-      font-size: 30px;
-    }
-    @media (max-width: 575.98px) {
-      font-size: 26px;
-    }
+    font-weight: 600;
   }
   &__description {
-    max-width: 80%;
-    text-align: justify;
-    font-size: 24px;
-    @media (max-width: 767.98px) {
-      font-size: 20px;
-      max-width: 90%;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &__link {
+    button {
+      display: flex;
+      gap: 5px;
+      i {
+        color: currentColor;
+        line-height: 0.9;
+        margin-bottom: 1px;
+      }
     }
-    @media (max-width: 575.98px) {
-      font-size: 18px;
+  }
+  &__preview {
+    width: 100%;
+    border-radius: 12px;
+    min-height: 370px;
+
+    &:hover {
+      img {
+        scale: 1.01;
+      }
+    }
+    button,
+    img {
+      border-radius: inherit;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      transition: 0.3s ease;
     }
   }
 }

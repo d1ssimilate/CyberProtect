@@ -10,12 +10,9 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.copyright}>
-          Все права защищены
-          <br />© 2024
-        </div>
+        <div className={styles.copyright}>© 2024 Все права защищены </div>
         <div className={styles.counter}>
-          Счетчик:
+          Просмотров:
           <span>{data?.data.count}</span>
         </div>
       </div>

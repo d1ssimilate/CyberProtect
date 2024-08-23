@@ -5,9 +5,9 @@ import { LearnMore } from "../../components/LearnMore/LearnMore";
 export function MainPage() {
   return (
     <>
-      <History />
       <Calendar />
       <LearnMore />
+      <History />
     </>
   );
 }

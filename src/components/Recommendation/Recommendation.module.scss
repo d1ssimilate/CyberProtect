@@ -17,11 +17,14 @@
     z-index: 1;
   }
   &__active {
-    background: var(--red);
+    background: linear-gradient(90deg, #0055cc 0%, #1a79ff 100%);
     cursor: pointer;
     .background {
-      opacity: 0.9;
+      opacity: 0.5;
       filter: unset;
+    }
+    &:hover {
+      background: var(--light-blue-gradient-hover);
     }
   }
   &__odd {

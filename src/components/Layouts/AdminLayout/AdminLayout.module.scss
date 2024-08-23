@@ -19,6 +19,7 @@
 .link {
   font-size: 26px;
   cursor: pointer;
+  color: var(--white);
 }
 .icon {
   path {
@@ -30,6 +31,9 @@
   flex-direction: column;
   gap: 15px;
   width: 100%;
+}
+.title {
+  color: var(--white);
 }
 .header {
   display: flex;

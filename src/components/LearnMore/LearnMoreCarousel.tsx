@@ -12,21 +12,17 @@ export function LearnMoreCarousel({ data }: { data: Array<any> }) {
     <div>
       <Swiper
         grabCursor={true}
-        effect={"creative"}
         loop={true}
+        slidesPerView={2}
         autoplay={{ delay: 3500, disableOnInteraction: true }}
-        creativeEffect={{
-          prev: {
-            translate: ["-120%", 0, -500],
-          },
-          next: {
-            translate: ["120%", 0, -500],
-          },
-        }}
         modules={[EffectCreative, Autoplay]}
+        spaceBetween={20}
       >
         {data.map((item, idx) => (
-          <SwiperSlide key={idx}>
+          <SwiperSlide
+            style={{ height: "unset", minHeight: "100%", display: "flex" }}
+            key={idx}
+          >
             <LearnMoreCard item={item} />
           </SwiperSlide>
         ))}

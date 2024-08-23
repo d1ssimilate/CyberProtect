@@ -2,6 +2,7 @@
   // Colors
   --white: #fff;
   --orange: #fb7321;
+  --orange-hover: #ed6b00;
   --light-gray: #d9dfe8;
   --black: #000;
   --deep-blue: #192544;
@@ -14,7 +15,8 @@
     rgba(0, 32, 64, 1),
     rgba(0, 50, 120, 1)
   );
-
+  --light-blue-gradient: linear-gradient(90deg, #0055cc 0%, #1a79ff 100%);
+  --light-blue-gradient-hover: linear-gradient(90deg, #006aff 0%, #4d97ff 100%);
   // Screen Sizes
   --x-small: 575.98px;
   --small: 767.98px;

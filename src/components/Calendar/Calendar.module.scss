@@ -5,14 +5,15 @@
   flex-direction: column;
   gap: 144px;
   position: relative;
+  padding: 40px 0;
   @media (max-width: 575.98px) {
     gap: 70px;
   }
 }
 .title {
   text-transform: uppercase;
-  color: var(--orange);
-  font-size: 70px;
+  color: var(--deep-blue);
+  font-size: 48px;
   font-weight: 700;
   text-align: center;
   @media (max-width: 767.98px) {

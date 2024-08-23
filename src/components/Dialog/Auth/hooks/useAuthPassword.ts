@@ -7,6 +7,7 @@ import { TUserAuthPasswordDtoRequest } from "../../../../api/entities/user/user.
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import { useCookie } from "../../../../hooks/useCookie";
 import { DialogContext } from "../../../Providers/DialogProvier/DialogProvider";
+import { useToast } from "../../../../hooks/useToast";
 
 interface IAuthPasswordForm {
   code: string;
@@ -32,6 +33,7 @@ export const useAuthPassword = () => {
       setCookie("exp", data.data.exp.toString());
       setCookie("refreshToken", data.data.refreshToken);
       setUser({ isAuth: true });
+      useToast(true, "Добро пожаловать!");
       setDialog("close");
     }
   }, [isSuccess]);

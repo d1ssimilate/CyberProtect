@@ -85,13 +85,18 @@ export function Calendar() {
   })();
 
   return (
-    <div ref={containerRef} className={`container ${styles.calendar}`}>
-      <h2 className={styles.title}>
-        Адвент-календарь
-        <br />
-        на декабрь 2024
-      </h2>
-      {isLoading ? <Loader /> : <Masonry items={recommendationItems}></Masonry>}
+    <div ref={containerRef} className={`container`}>
+      <div className={styles.calendar}>
+        <h2 className={styles.title}>
+          Адвент-календарь
+          {/* <br /> */} на декабрь 2024
+        </h2>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Masonry items={recommendationItems}></Masonry>
+        )}
+      </div>
     </div>
   );
 }
