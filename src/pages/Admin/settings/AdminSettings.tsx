@@ -76,7 +76,10 @@ export function AdminSettings() {
             />
           </div>
           <p className={styles.subtitle}>Показать все дни?</p>
-          <Checkbox active={data?.data.showAllDays} onChange={setShowAllDays} />
+          <Checkbox
+            active={data?.data.showAllDays}
+            onChange={() => setShowAllDays(!showAllDays)}
+          />
           <Button
             loading={isPending ? "true" : undefined}
             style={{ maxWidth: "fit-content" }}

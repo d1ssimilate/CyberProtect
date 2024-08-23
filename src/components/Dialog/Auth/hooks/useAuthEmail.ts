@@ -33,7 +33,7 @@ export const useAuthEmail = () => {
           setCookie("exp", data?.exp);
         } else {
           setUser({ email: formData.email, isAuth: false });
-          setDialog("AuthPassword", "Введите пароль из почты");
+          setDialog("AuthPassword", "Введите код из почты");
         }
       }
     },
