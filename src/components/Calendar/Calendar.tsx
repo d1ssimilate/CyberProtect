@@ -8,22 +8,35 @@ import { Loader } from "../UI/Loader/Loader";
 import { getImages } from "../../utils/getImages";
 import { Route } from "../../routes/_main";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
+import { adminApiService } from "../../api/entities/admin/admin.api";
 
 export function Calendar() {
-  const { data, isLoading } = useQuery({
+  const { data: recommendationsData, isLoading } = useQuery({
     queryKey: ["recommendations"],
     queryFn: () => recommendationApiService.getRecommendations(),
   });
+  const { data: settingsData } = useQuery({
+    queryKey: ["settings"],
+    queryFn: () => adminApiService.getSettings(),
+  });
+
   const { setDialog } = useContext(DialogContext);
+
   const getDaysInMonth = (date: Date) =>
-    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    new Date(
+      date.getFullYear(),
+      settingsData?.data.month ?? date.getMonth() + 1,
+      0
+    ).getDate();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { recommendation } = Route.useSearch();
 
   useEffect(() => {
-    if (recommendation && data) {
-      const day = data.data.find((item) => item.id === recommendation);
+    if (recommendation && recommendationsData) {
+      const day = recommendationsData.data.find(
+        (item) => item.id === recommendation
+      );
       if (day) {
         setDialog("Recommendation", day.title, {
           ...day,
@@ -31,12 +44,14 @@ export function Calendar() {
         });
       }
     }
-  }, [recommendation, data]);
+  }, [recommendation, recommendationsData]);
 
   const recommendationItems = (() => {
-    if (data) {
-      const lastId = data.data.length ? data.data[data.data.length - 1].id : 0;
-      const items = data.data.map((item, idx) => {
+    if (recommendationsData) {
+      const lastId = recommendationsData.data.length
+        ? recommendationsData.data[recommendationsData.data.length - 1].id
+        : 0;
+      const items = recommendationsData.data.map((item, idx) => {
         const isOdd = (idx + 1) % 2 !== 0;
         const imageIndex = ((idx - (idx % 2)) / 2) % getImages().length;
         return (
@@ -50,7 +65,9 @@ export function Calendar() {
       });
 
       const additionalItems = Array.from(
-        { length: getDaysInMonth(new Date()) - data.data.length },
+        {
+          length: getDaysInMonth(new Date()) - recommendationsData.data.length,
+        },
         (_, idx) => {
           const id = lastId + idx + 1;
           const isOdd = (items.length + idx + 1) % 2 !== 0;
