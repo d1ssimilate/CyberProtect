@@ -9,6 +9,7 @@ import { RecommendationDialog } from "../../Dialog/Recommendation/Recommendation
 import { AuthEmailDialog } from "../../Dialog/Auth/AuthEmail";
 import { AuthPasswordDialog } from "../../Dialog/Auth/AuthPassword";
 import { Subscribe } from "../../Dialog/Subscribe/Subscribe";
+import { getImages } from "../../../utils/getImages";
 
 type modalsName = string;
 interface ModalProps extends PropsWithChildren {
@@ -50,14 +51,16 @@ export function Modal(props: ModalProps) {
               {props.data?.number && (
                 <div
                   className={styles.number}
+                  style={{background: `url(${getImages()[1]})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center'}}
                 >
+                  <div className={styles.number__day}>
                   {props.data.number}
+                  </div>
                 </div>
               )}
             </div>
             <div className={styles.main__content}>
               <div className="skew">
-              <div className="div">
                 <div className={styles.head}>
 
                   <p
@@ -68,7 +71,6 @@ export function Modal(props: ModalProps) {
                   </p>
                 </div>
                 {getModal(props.nameModal)}
-              </div>
               </div>
             </div>
             <CrossIcon
