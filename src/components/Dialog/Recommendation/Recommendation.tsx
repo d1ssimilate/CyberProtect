@@ -4,7 +4,7 @@ import { DialogContext } from "../../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
 import { url } from "../../../api/instance";
 import { Image } from "primereact/image";
-import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useCookie } from "../../../hooks/useCookie";
 import { recommendationApiService } from "../../../api/entities/recommendation/recommendation.api";
 import { useMutation } from "@tanstack/react-query";
