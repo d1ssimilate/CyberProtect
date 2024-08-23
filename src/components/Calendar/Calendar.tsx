@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Recommendation } from "../Recommendation/Recommendation";
 import styles from "./Calendar.module.scss";
 import { Masonry } from "../Masonry/Masonry";
@@ -6,16 +6,33 @@ import { useQuery } from "@tanstack/react-query";
 import { recommendationApiService } from "../../api/entities/recommendation/recommendation.api";
 import { Loader } from "../UI/Loader/Loader";
 import { getImages } from "../../utils/getImages";
+import { Route } from "../../routes/_main";
+import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 
 export function Calendar() {
   const { data, isLoading } = useQuery({
     queryKey: ["recommendations"],
     queryFn: () => recommendationApiService.getRecommendations(),
   });
+  const { setDialog } = useContext(DialogContext);
   const getDaysInMonth = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const { recommendation } = Route.useSearch();
+
+  useEffect(() => {
+    if (recommendation && data) {
+      const day = data.data.find((item) => item.id === recommendation);
+      if (day) {
+        setDialog("Recommendation", day.title, {
+          ...day,
+          number: day.id,
+        });
+      }
+    }
+  }, [recommendation, data]);
+
   const recommendationItems = (() => {
     if (data) {
       const lastId = data.data.length ? data.data[data.data.length - 1].id : 0;
