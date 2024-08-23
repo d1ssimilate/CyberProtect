@@ -6,7 +6,7 @@ import { User } from "../Providers/AuthProvider/AuthProvider.types";
 import { CrossIcon } from "../UI/Icons/CrossIcon";
 import { BurgerMenuIcon } from "../UI/Icons/BurgerMenuIcon";
 import { userApiService } from "../../api/entities/user/user.api";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 
 export function HeaderMenu(props: User) {
