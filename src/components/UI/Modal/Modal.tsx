@@ -45,26 +45,36 @@ export function Modal(props: ModalProps) {
           {...modalAnimations.content}
         >
           <div className={styles.content}>
+            <div className={styles.number__container}>
+         
+              {props.data?.number && (
+                <div
+                  className={styles.number}
+                >
+                  {props.data.number}
+                </div>
+              )}
+            </div>
+            <div className={styles.main__content}>
+              <div className="skew">
+              <div className="div">
+                <div className={styles.head}>
+
+                  <p
+                    style={props.data?.number ? {} : { marginTop: "20px" }}
+                    className={styles.title}
+                  >
+                    {props.title}
+                  </p>
+                </div>
+                {getModal(props.nameModal)}
+              </div>
+              </div>
+            </div>
             <CrossIcon
               onClick={() => props.setDialog("close")}
               className={styles.close}
             />
-            <div className={styles.head}>
-              {props.data?.number && (
-                <div
-                  data-number={props.data.number}
-                  className={styles.number}
-                />
-              )}
-
-              <p
-                style={props.data?.number ? {} : { marginTop: "20px" }}
-                className={styles.title}
-              >
-                {props.title}
-              </p>
-            </div>
-            {getModal(props.nameModal)}
           </div>
         </motion.div>
         <div
