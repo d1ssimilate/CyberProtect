@@ -43,6 +43,7 @@
   z-index: 0;
   opacity: 0.3;
   filter: blur(3px);
+  max-height: 170px;
   @media (max-width: 575.98px) {
     height: 120px;
     width: 120px;

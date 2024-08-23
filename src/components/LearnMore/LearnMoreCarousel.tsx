@@ -13,10 +13,11 @@ export function LearnMoreCarousel({ data }: { data: Array<any> }) {
       <Swiper
         grabCursor={true}
         loop={true}
-        slidesPerView={2}
+        slidesPerView={1}
         autoplay={{ delay: 3500, disableOnInteraction: true }}
         modules={[EffectCreative, Autoplay]}
         spaceBetween={20}
+        breakpoints={{ 720: { slidesPerView: 2 } }}
       >
         {data.map((item, idx) => (
           <SwiperSlide
