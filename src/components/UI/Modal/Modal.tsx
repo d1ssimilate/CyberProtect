@@ -29,14 +29,14 @@ const getModal = (name: modalsName) => {
   const modals = {
     RecommendationEdit: () => <RecommendationEditDialog />,
     Recommendation: () => <RecommendationDialog />,
-    AuthEmailDialog: () => <AuthEmailDialog />,
+    AuthEmail: () => <AuthEmailDialog />,
     AuthPassword: () => <AuthPasswordDialog />,
     Subscribe: () => <Subscribe />,
   };
 
   const useComponent = modals[name];
 
-  return useComponent();
+  return useComponent?.();
 };
 
 export function Modal(props: ModalProps) {
