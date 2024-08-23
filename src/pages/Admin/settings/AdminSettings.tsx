@@ -36,10 +36,6 @@ export function AdminSettings() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth || null);
   const [showAllDays, setShowAllDays] = useState(false);
 
-  useEffect(() => {
-    console.log(showAllDays);
-  }, [showAllDays]);
-
   const { mutate, isPending } = useMutation({
     mutationFn: (params: TSettingsDtoRequest) =>
       adminApiService.putSettings({ params }),
