@@ -6,8 +6,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-creative";
 import { LearnMoreCard } from "./LearnMoreCard";
+import { TProjectRequestData } from "../../api/entities/projects/projects.types";
 
-export function LearnMoreCarousel({ data }: { data: Array<any> }) {
+export function LearnMoreCarousel({ data }: { data: TProjectRequestData[] }) {
   return (
     <div>
       <Swiper

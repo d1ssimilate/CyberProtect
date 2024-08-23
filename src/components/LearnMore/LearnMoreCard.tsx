@@ -1,12 +1,13 @@
 import { Image } from "primereact/image";
 import styles from "./LearnMore.module.scss";
 import { Button } from "../UI/Button/Button";
+import { url } from "../../api/instance";
 export function LearnMoreCard({ item }: { item: any }) {
   return (
     <div className={styles.card}>
       <Image
         className={styles.card__preview}
-        src={item.preview}
+        src={`${url}${item.preview}`}
         alt="Image"
         preview={true}
       />

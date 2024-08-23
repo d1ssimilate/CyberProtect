@@ -1,32 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import styles from "./LearnMore.module.scss";
 import { LearnMoreCarousel } from "./LearnMoreCarousel";
-
-const fakeData = [
-  {
-    preview: "/projects/cyberprotect.png",
-    title: "КИБЕРПРОТЕКТ",
-    link: "https://cyberprotect.ru/",
-    description:
-      "Киберпротект – российский разработчик ПО «Киберпротект» — российский разработчик систем резервногокопирования, защиты от утечки данных (DLP) и инфраструктурногопрограммного обеспечения. Решениями компании пользуютсяорганизации любого масштаба, которые заинтересованы в надежной киберзащите, сохранности данных и работоспособности ИТ-инфраструктуры.",
-  },
-  {
-    preview: "/projects/cybercare.png",
-    title: "КИБЕР ЗАБОТА",
-    link: "https://cyber-care.ru/",
-
-    description:
-      "Кибер Забота – образовательный проект по цифровой гигиене В 2021 году компания Киберпротект разработала и запустила бесплатный всероссийский проект по обучению детей и взрослых основам безопасного поведения в Интернете – Кибер Забота. В рамках проекта было разработано два бесплатных образовательных курса, дающих представление учителям и школьникам о современных киберугрозах и основных способах противодействия им, принципах безопасного общения и поведения в сети, безопасного хранения данных.",
-  },
-];
+import { projectsApiService } from "../../api/entities/projects/projects.api";
 
 export function LearnMore() {
+  const { data } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => projectsApiService.getProjects(),
+  });
   return (
     <div className={styles.container}>
       <div className={`container ${styles.content}`}>
         <h2 className={styles.title}>
           Узнайте больше о цифровой безопасности <br /> вместе с Киберпротектом
         </h2>
-        <LearnMoreCarousel data={[...fakeData, ...fakeData]} />
+        {data && <LearnMoreCarousel data={data.data} />}
       </div>
     </div>
   );

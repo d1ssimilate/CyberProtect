@@ -6,8 +6,9 @@ import { url } from "../../api/instance";
 import { TRecommendationAttachment } from "../../api/entities/recommendation/recommendation.types";
 
 interface FileUploadProps {
-  files: (File | TRecommendationAttachment)[];
-  setFiles: (files: (File | TRecommendationAttachment)[]) => void;
+  files?: (File | TRecommendationAttachment)[];
+  multiple?: boolean;
+  setFiles: (files: (File | any)[]) => void;
 }
 
 export const FileUploader = (props: FileUploadProps) => {
@@ -62,7 +63,11 @@ export const FileUploader = (props: FileUploadProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.input}>
-        <input type="file" multiple onChange={handleFileChange} />
+        <input
+          type="file"
+          multiple={props.multiple}
+          onChange={handleFileChange}
+        />
         Добавить файлы
       </div>
       <div className={styles.files}>

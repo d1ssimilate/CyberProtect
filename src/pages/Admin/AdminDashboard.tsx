@@ -3,6 +3,7 @@ import { AdminSettings } from "./settings/AdminSettings";
 import { AdminRecommendations } from "./recommendations/AdminRecommendations";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../components/Providers/AuthProvider/AuthProvider";
+import { AdminProjects } from "./projects/AdminProjects";
 
 export function AdminDashboard() {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,8 @@ export function AdminDashboard() {
         return <AdminRecommendations />;
       case "settings":
         return <AdminSettings />;
-
+      case "projects":
+        return <AdminProjects />;
       default:
         return <AdminRecommendations />;
     }
