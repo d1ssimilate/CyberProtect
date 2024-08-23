@@ -58,6 +58,23 @@ body {
     Helvetica Neue,
     sans-serif;
 }
+
+.popup-menu {
+  @mixin reset() {
+    color: var(--black);
+    font-size: 16px;
+  }
+
+  @include reset();
+
+  :is(ul, li, .p-menuitem-text, .p-menuitem-link, .p-menuitem-content) {
+    @include reset();
+  }
+  :is(.p-menuitem-text, .p-menuitem-link) {
+    font-weight: normal;
+  }
+}
+
 .layout {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useRef } from "react";
 import styles from "./Recommendations.module.scss";
 import { DialogContext } from "../../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
@@ -12,12 +12,33 @@ import { isMobile } from "react-device-detect";
 import { Button } from "../../UI/Button/Button";
 import { useToast } from "../../../hooks/useToast";
 import { share } from "../../../utils/share";
+import { Menu } from "primereact/menu";
 
 export function RecommendationDialog() {
   const { data: ContextData } = useContext(DialogContext);
   const data = ContextData as TRecommendationRequestData;
   const { getCookie } = useCookie();
   const accessToken = getCookie("accessToken");
+  const menu = useRef(null);
+  const items = [
+    {
+      label: 'Социальный сети',
+      items: [
+          {
+              label: 'Вконтакте',
+              command: () => share('vk', data.description)
+          },
+          {
+              label: 'Telegram',
+              command: () => share('telegram', data.description)
+          },
+          {
+            label: 'Whatsapp',
+            command: () => share('whatsapp', data.description)
+        },
+      ]
+  }
+  ]
 
   const { mutate } = useMutation({
     mutationFn: () =>
@@ -39,14 +60,11 @@ export function RecommendationDialog() {
         window.navigator.clipboard.writeText(data.title + '\n\n' + data.description);
         useToast(true,' Текст скопирован!');
       },
-      mobile: () => {
-        share('telegram', data.title + '\n\n' + data.description);
-        console.log('Поделиться');
-      }
+      mobile: (e) => menu.current.toggle(e),
     }
   
     const action = actionType[device];
-  
+
     return (
       <Button onClick={action} variant="blue">
         {device == 'mobile' ? 'Поделиться' : 'Скопировать'}
@@ -57,7 +75,7 @@ export function RecommendationDialog() {
   return (
     <div className={styles.content}>
       <p className={styles.description}>
-        {data.description} {isMobile + ""}
+        {data.description}
       </p>
       {data.attachments &&
         data.attachments.map((item, idx) => {
@@ -86,6 +104,7 @@ export function RecommendationDialog() {
           Подробнее
         </Link>
       )}
+      <Menu className="popup-menu"  model={items} popup ref={menu} color="black" />
       {showButton(data)}
     </div>
   );
