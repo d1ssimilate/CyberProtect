@@ -8,6 +8,7 @@ import { RecommendationEditDialog } from "../../Dialog/RecommendationEdit";
 import { RecommendationDialog } from "../../Dialog/Recommendation/Recommendation";
 import { AuthEmailDialog } from "../../Dialog/Auth/AuthEmail";
 import { AuthPasswordDialog } from "../../Dialog/Auth/AuthPassword";
+import { Subscribe } from "../../Dialog/Subscribe/Subscribe";
 
 interface ModalProps extends PropsWithChildren {
   nameModal: string;
@@ -16,6 +17,27 @@ interface ModalProps extends PropsWithChildren {
   setDialog: (nameModal: string) => void;
   containerClassName?: string;
 }
+
+type modalsName =
+  | "RecommendationEdit"
+  | "Recommendation"
+  | "AuthEmailDialog"
+  | "AuthPassword"
+  | "Subscribe"
+
+const getModal = (name: modalsName) => {
+  const modals = {
+    RecommendationEdit: () => <RecommendationEditDialog />,
+    Recommendation: () => <RecommendationDialog />,
+    AuthEmailDialog: () => <AuthEmailDialog />,
+    AuthPassword: () => <AuthPasswordDialog />,
+    Subscribe: () => <Subscribe />,
+  };
+
+  const useComponent = modals[name];
+
+  return useComponent();
+};
 
 export function Modal(props: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -48,17 +70,7 @@ export function Modal(props: ModalProps) {
                 {props.title}
               </p>
             </div>
-            {props.nameModal === "RecommendationEdit" ? (
-              <RecommendationEditDialog />
-            ) : props.nameModal === "Recommendation" ? (
-              <RecommendationDialog />
-            ) : props.nameModal === "AuthEmail" ? (
-              <AuthEmailDialog />
-            ) : props.nameModal === "AuthPassword" ? (
-              <AuthPasswordDialog />
-            ) : (
-              ""
-            )}
+            {getModal(props.nameModal)}
           </div>
         </motion.div>
         <div

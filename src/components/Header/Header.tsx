@@ -27,7 +27,7 @@ export function Header() {
           <p className={styles.user}>{user.email}</p>
         ) : (
           <div className={styles.actions}>
-            <Button variant="red">Подписаться</Button>
+            <Button onClick={() => setDialog('Subscribe','Подписаться')} variant="red">Подписаться</Button>
             <Button
               onClick={() => setDialog("AuthEmail", "Авторизация")}
               variant="blue"

@@ -18,3 +18,10 @@ export type TUserRequestData = {
   role: string;
   code: string;
 };
+
+export type TUserSubscribe = {
+  email: string,
+  isConfirm: boolean,
+  nickname: string,
+  tgUsername: string,
+}

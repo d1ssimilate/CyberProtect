@@ -5,6 +5,7 @@ import {
   TUserAuthPasswordDataRequest,
   TUserAuthPasswordDtoRequest,
   TUserRequestData,
+  TUserSubscribe,
 } from "./user.types";
 import { useCookie } from "../../../hooks/useCookie";
 
@@ -44,6 +45,16 @@ class UserApi {
     clearCookies("refreshToken");
     window.location.replace("/");
   }
+
+  async subscribe({params} : AxiosRequestConfig<TUserSubscribe>) {
+    const formData = new FormData();
+
+    for(const key in params) formData.append(key, params[key]);
+
+    const response = await api.post("/users/subscribe", formData);
+    return response.data;
+  }
+
   async userRefreshToken(token: string | undefined) {
     const { getCookie } = useCookie();
     const response = await axios.patch<TUserAuthPasswordDataRequest>(

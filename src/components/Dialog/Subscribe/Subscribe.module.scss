@@ -1,0 +1,13 @@
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.checkbox {
+    height: 24px;
+    aspect-ratio: 1/1;
+    &__text {
+        font-size: 16px;
+        color: var(--deep-blue);
+    }
+}

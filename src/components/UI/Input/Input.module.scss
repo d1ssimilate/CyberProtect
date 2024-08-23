@@ -24,3 +24,16 @@
 .textarea {
   min-height: 200px;
 }
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.checkbox {
+  font-size: 24px;
+  &__text {
+    font-size: 16px;
+    color: var(--deep-blue);
+  }
+}
