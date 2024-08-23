@@ -46,13 +46,13 @@ class UserApi {
     window.location.replace("/");
   }
 
-  async subscribe({params} : AxiosRequestConfig<TUserSubscribe>) {
+  async subscribe({ params }: AxiosRequestConfig<TUserSubscribe>) {
     const formData = new FormData();
 
-    formData.append('email', params.email);
-    formData.append('isConfirm', String(params.isConfirm));
-    formData.append('nickname', params.nickname);
-    formData.append('tgUsername', params.tgUsername);
+    formData.append("email", params.email);
+    formData.append("isConfirm", String(params.isConfirm));
+    formData.append("nickname", params.nickname);
+    formData.append("tgUsername", params.tgUsername);
 
     const response = await api.post("/users/subscribe", formData);
     return response.data;
@@ -72,6 +72,13 @@ class UserApi {
     );
 
     return response;
+  }
+  async userDeleteSubcribe(email: string) {
+    const response = await api.delete(`/users/subscribe?email=${email}`);
+    if (response.status === 200) {
+      location.reload();
+      localStorage.removeItem("email");
+    }
   }
 }
 

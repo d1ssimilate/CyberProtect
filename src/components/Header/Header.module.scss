@@ -64,15 +64,8 @@
 .actions {
   display: flex;
   gap: 15px;
-  @media (max-width: 767.98px) {
-    display: none;
-  }
 }
 .menu {
-  display: none;
-  @media (max-width: 767.98px) {
-    display: block;
-  }
   &__icon {
     position: relative;
     z-index: 1;
@@ -89,7 +82,7 @@
     top: 0;
     height: 100%;
     background-color: var(--white);
-    max-width: 280px;
+    max-width: 400px;
     width: 100%;
   }
   &__content {
