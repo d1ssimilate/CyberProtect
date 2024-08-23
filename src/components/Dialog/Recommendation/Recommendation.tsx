@@ -4,10 +4,14 @@ import { DialogContext } from "../../Providers/DialogProvier/DialogProvider";
 import { TRecommendationRequestData } from "../../../api/entities/recommendation/recommendation.types";
 import { url } from "../../../api/instance";
 import { Image } from "primereact/image";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useCookie } from "../../../hooks/useCookie";
 import { recommendationApiService } from "../../../api/entities/recommendation/recommendation.api";
 import { useMutation } from "@tanstack/react-query";
+import { isMobile } from "react-device-detect";
+import { Button } from "../../UI/Button/Button";
+import { useToast } from "../../../hooks/useToast";
+import { share } from "../../../utils/share";
 
 export function RecommendationDialog() {
   const { data: ContextData } = useContext(DialogContext);
@@ -19,15 +23,42 @@ export function RecommendationDialog() {
     mutationFn: () =>
       recommendationApiService.postRecommendationCreateView(data.id),
   });
+
   useEffect(() => {
     if (accessToken && data) {
       mutate();
     }
   }, [accessToken, data]);
 
+  const showButton = (data: TRecommendationRequestData) => {
+
+    const device = isMobile ? 'mobile' : 'desktop';
+  
+    const actionType = {
+      desktop: () => {
+        window.navigator.clipboard.writeText(data.title + '\n\n' + data.description);
+        useToast(true,' Текст скопирован!');
+      },
+      mobile: () => {
+        share('telegram', data.title + '\n\n' + data.description);
+        console.log('Поделиться');
+      }
+    }
+  
+    const action = actionType[device];
+  
+    return (
+      <Button onClick={action} variant="blue">
+        {device == 'mobile' ? 'Поделиться' : 'Скопировать'}
+      </Button>
+    );
+  };
+
   return (
     <div className={styles.content}>
-      <p className={styles.description}>{data.description}</p>
+      <p className={styles.description}>
+        {data.description} {isMobile + ""}
+      </p>
       {data.attachments &&
         data.attachments.map((item, idx) => {
           const fileUrl = `${url}${item.url}`;
@@ -55,6 +86,7 @@ export function RecommendationDialog() {
           Подробнее
         </Link>
       )}
+      {showButton(data)}
     </div>
   );
 }
