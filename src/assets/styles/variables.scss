@@ -6,8 +6,14 @@
   --black: #000;
   --deep-blue: #192544;
   --blue: #3f5daa;
+  --additional-blue: #173e7e;
   --red: #d20a11;
   --red-dark: #a8070d;
+  --main-gradient: linear-gradient(
+    to bottom,
+    rgba(0, 32, 64, 1),
+    rgba(0, 50, 120, 1)
+  );
 
   // Screen Sizes
   --x-small: 575.98px;
