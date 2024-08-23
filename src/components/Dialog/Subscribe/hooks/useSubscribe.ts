@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { userApiService } from "../../../../api/entities/user/user.api";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DialogContext } from "../../../Providers/DialogProvier/DialogProvider";
 
 interface ISubscribeForm {
@@ -19,13 +19,18 @@ export const useSubscribe = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ISubscribeForm>({ mode: "onChange" });
+  const [formData, setFormData] = useState<ISubscribeForm | null>(null);
 
   const { mutate, isPending } = useMutation({
     mutationFn: (params: ISubscribeForm) =>
       userApiService.subscribe({ params }),
-    onSuccess: () => setDialog("close"),
+    onSuccess: () => {
+      localStorage.setItem("email", formData?.email!);
+      setDialog("close");
+    },
   });
   const onSubmit = (data: ISubscribeForm) => {
+    setFormData(data);
     mutate({
       email: data.email,
       tgUsername: data.tgUsername,

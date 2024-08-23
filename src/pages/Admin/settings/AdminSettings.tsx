@@ -36,6 +36,10 @@ export function AdminSettings() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth || null);
   const [showAllDays, setShowAllDays] = useState(false);
 
+  useEffect(() => {
+    console.log(showAllDays);
+  }, [showAllDays]);
+
   const { mutate, isPending } = useMutation({
     mutationFn: (params: TSettingsDtoRequest) =>
       adminApiService.putSettings({ params }),
@@ -77,7 +81,7 @@ export function AdminSettings() {
           </div>
           <p className={styles.subtitle}>Показать все дни?</p>
           <Checkbox
-            active={data?.data.showAllDays}
+            active={showAllDays}
             onChange={() => setShowAllDays(!showAllDays)}
           />
           <Button

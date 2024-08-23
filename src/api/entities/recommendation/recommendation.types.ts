@@ -22,3 +22,7 @@ export type TRecommendationEditDtoRequest = {
   attachmentIds?: TRecommendationAttachment[];
   title: string;
 };
+export type TRecommendationViewDtoRequest = {
+  id: number;
+  email: string;
+};

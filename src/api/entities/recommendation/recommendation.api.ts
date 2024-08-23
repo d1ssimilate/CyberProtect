@@ -2,6 +2,7 @@ import { api } from "../../instance";
 import {
   TRecommendationEditDtoRequest,
   TRecommendationRequestData,
+  TRecommendationViewDtoRequest,
 } from "./recommendation.types";
 
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -12,8 +13,17 @@ class RecommendationApi {
       params: { timeZone },
     });
   }
-  async postRecommendationCreateView(id: number) {
-    return api.post(`/days/${id}/views`);
+  // async postRecommendationCreateView(id: number) {
+  //   return api.post(`/days/${id}/views`);
+  // }
+  async postRecommendationCreateView({
+    config,
+    params,
+  }: AxiosRequestConfig<TRecommendationViewDtoRequest>) {
+    const formData = new FormData();
+    formData.append("email", params.email);
+    const response = api.post(`/days/${params.id}/views`, formData, config);
+    return response;
   }
   async putRecommendationRequest({
     config,
