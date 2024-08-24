@@ -14,8 +14,8 @@ export function AuthPasswordDialog() {
         {...register("code", {
           required: "Обязательное поле",
         })}
-        placeholder="Пароль"
-        label="Пароль"
+        placeholder="Код"
+        label="Код"
       />
       <Button
         type="submit"

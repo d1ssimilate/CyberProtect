@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { modalAnimations } from "./Modal.animatios";
 import styles from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
@@ -40,6 +40,12 @@ const getModal = (name: modalsName) => {
 
 export function Modal(props: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.addEventListener("keyup", function (e: KeyboardEvent) {
+      if (e.code === "Escape") props.setDialog("close");
+    });
+  }, []);
 
   const showSnow = () => {
     if (props.nameModal)

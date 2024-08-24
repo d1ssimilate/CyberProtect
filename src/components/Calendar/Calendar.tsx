@@ -59,7 +59,7 @@ export function Calendar() {
             {isOdd && (
               <img className={styles.toy} src={getImages()[imageIndex]} />
             )}
-            <Recommendation active={true} key={idx} item={item}  />
+            <Recommendation active={true} key={idx} item={item} />
           </>
         );
       });
@@ -104,10 +104,10 @@ export function Calendar() {
   return (
     <div ref={containerRef} className={`container`}>
       <div className={styles.calendar}>
-        <h2 className={styles.title}>
-          Адвент-календарь
-          {/* <br /> */} на декабрь 2024
-        </h2>
+        <div className={styles.text}>
+          <h1 className={styles.title}>КИБЕРБЕЗОПАСНЫЙ НОВЫЙ ГОД</h1>
+          <h2 className={styles.subtitle}>Адвент-календарь на декабрь 2024</h2>
+        </div>
         {isLoading ? (
           <Loader />
         ) : (

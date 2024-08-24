@@ -3,26 +3,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 144px;
+  gap: 70px;
   position: relative;
-  padding: 40px 0;
+  padding: 70px 0;
   @media (max-width: 575.98px) {
     gap: 70px;
   }
 }
-.title {
-  text-transform: uppercase;
-  color: var(--deep-blue);
-  font-size: 48px;
-  font-weight: 700;
-  text-align: center;
-  @media (max-width: 767.98px) {
-    font-size: 50px;
-  }
-  @media (max-width: 575.98px) {
-    font-size: 35px;
-  }
-}
+
 .snowFlakes {
   position: absolute;
   top: 0;
@@ -42,4 +30,25 @@
     width: 120px;
     height: 120px;
   }
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.subtitle {
+  font-size: 24px;
+}
+.title {
+  font-size: 48px;
+  @media (max-width: 575.98px) {
+    font-size: 35px;
+  }
+}
+.title,
+.subtitle {
+  text-transform: uppercase;
+  color: var(--deep-blue);
+  font-weight: 700;
+  text-align: center;
 }

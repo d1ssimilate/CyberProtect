@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import styles from "./Header.module.scss";
 import { HeaderMenu } from "./HeaderMenu";
 import { useContext } from "react";
@@ -17,9 +16,6 @@ export function Header() {
         >
           <LogoIcon />
         </a>
-        <Link to={"/"} className={styles.title}>
-          <h1>Кибербезопасный Новый год</h1>
-        </Link>
 
         <HeaderMenu {...user} />
       </div>
