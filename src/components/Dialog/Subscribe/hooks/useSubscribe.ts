@@ -11,14 +11,18 @@ interface ISubscribeForm {
   isConfirm: boolean;
 }
 
-export const useSubscribe = () => {
+interface defaultValues  {
+  email: string
+}
+
+export const useSubscribe = (  defaultValues?: defaultValues) => {
   const { setDialog } = useContext(DialogContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISubscribeForm>({ mode: "onChange" });
+  } = useForm<ISubscribeForm>({ mode: "onChange", defaultValues });
   const [formData, setFormData] = useState<ISubscribeForm | null>(null);
 
   const { mutate, isPending } = useMutation({

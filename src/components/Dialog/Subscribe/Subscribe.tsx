@@ -4,10 +4,13 @@ import { Input } from "../../UI/Input/Input";
 import { useSubscribe } from "./hooks/useSubscribe";
 import { emailRegExp } from "../../../utils/regExp";
 import styles from "./Subscribe.module.scss";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
 
 export function Subscribe() {
+  const { user } = useContext(AuthContext);
   const { errors, handleSubmit, isPending, register, onSubmit } =
-    useSubscribe();
+    useSubscribe({email: user.email ?? ''});
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
