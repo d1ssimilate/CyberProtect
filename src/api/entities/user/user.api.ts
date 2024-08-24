@@ -80,6 +80,7 @@ class UserApi {
       localStorage.removeItem("email");
     }
   }
+
 }
 
 export const userApiService = new UserApi();

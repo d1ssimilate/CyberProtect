@@ -1,6 +1,6 @@
 import styles from "./Recommendation.module.scss";
 import { TRecommendationAttachment } from "../../api/entities/recommendation/recommendation.types";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { getImages } from "../../utils/getImages";
 
@@ -12,10 +12,12 @@ interface RecommendationProps {
 
 export function Recommendation(props: RecommendationProps) {
   const isOdd = props.item.id % 2 !== 0;
+  const [viewed, setViewed] = useState(props.item.isViewed);
   const imageIndex = props.item.id % getImages().length;
   const { setDialog } = useContext(DialogContext);
   const onClick = () => {
     if (props.active)
+      setViewed(true);
       setDialog("Recommendation", props.item.title, {
         ...props.item,
         number: props.item.id,
@@ -23,7 +25,7 @@ export function Recommendation(props: RecommendationProps) {
   };
 
   const isViewed = () => {
-    if (props.item?.isViewed)
+    if (viewed)
       return (
         <i className={`pi pi-check ${styles.viewed__icon}`}>
           <span className={styles.viewed__text}>Просмотрено</span>

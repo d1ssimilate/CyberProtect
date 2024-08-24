@@ -1,3 +1,4 @@
+import { useCookie } from "../../../hooks/useCookie";
 import { api } from "../../instance";
 import {
   TRecommendationEditDtoRequest,
@@ -9,8 +10,13 @@ const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 class RecommendationApi {
   async getRecommendations() {
+    const { getCookie } = useCookie();
+
     return api.get<TRecommendationRequestData[]>("/days", {
-      params: { timeZone },
+      headers: {
+        Authorization: `Bearer ${getCookie("accessToken")}`,
+      },
+      params: { timeZone, subscriber: localStorage.getItem("email") },
     });
   }
   // async postRecommendationCreateView(id: number) {

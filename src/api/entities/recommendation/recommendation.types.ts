@@ -13,6 +13,7 @@ export type TRecommendationRequestData = {
   title: string;
   isLongRead: boolean;
   attachments?: TRecommendationAttachment[];
+  isViewed: boolean,
 };
 export type TRecommendationEditDtoRequest = {
   id: number;
