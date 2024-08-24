@@ -16,3 +16,10 @@
   gap: 15px;
   max-width: 600px;
 }
+.actions {
+  display: flex;
+  gap: 5px;
+  i {
+    color: var(--white);
+  }
+}

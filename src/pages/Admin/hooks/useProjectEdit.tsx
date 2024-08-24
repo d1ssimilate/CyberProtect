@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { TProjectsDtoRequest } from "../../../api/entities/projects/projects.types";
+import { TProjectRequestData } from "../../../api/entities/projects/projects.types";
 import { projectsApiService } from "../../../api/entities/projects/projects.api";
 
 export interface IProjectsAddForm {
@@ -9,17 +9,16 @@ export interface IProjectsAddForm {
   link: string;
 }
 
-export const useProjectsAdd = () => {
+export const useProjectEdit = (defaultValues: IProjectsAddForm) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm<TProjectsDtoRequest>({ mode: "onChange" });
+  } = useForm<IProjectsAddForm>({ mode: "onChange", defaultValues });
 
   const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: (params: TProjectsDtoRequest) =>
-      projectsApiService.postProjects({ params }),
+    mutationFn: (params: TProjectRequestData) =>
+      projectsApiService.putProjects({ params }),
   });
 
   return {
@@ -27,7 +26,6 @@ export const useProjectsAdd = () => {
     handleSubmit,
     errors,
     isPending,
-    reset,
     mutate,
     isSuccess,
   };

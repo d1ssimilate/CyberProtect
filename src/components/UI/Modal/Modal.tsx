@@ -10,6 +10,8 @@ import { AuthEmailDialog } from "../../Dialog/Auth/AuthEmail";
 import { AuthPasswordDialog } from "../../Dialog/Auth/AuthPassword";
 import { Subscribe } from "../../Dialog/Subscribe/Subscribe";
 import { getImages } from "../../../utils/getImages";
+import { ProjectEdit } from "../../Dialog/Project/ProjectEdit";
+import { ProjectDelete } from "../../Dialog/Project/ProjectDelete";
 
 type modalsName = string;
 interface ModalProps extends PropsWithChildren {
@@ -27,14 +29,14 @@ const getModal = (name: modalsName) => {
     AuthEmail: () => <AuthEmailDialog />,
     AuthPassword: () => <AuthPasswordDialog />,
     Subscribe: () => <Subscribe />,
+    ProjectEdit: () => <ProjectEdit />,
+    ProjectDelete: () => <ProjectDelete />,
   };
 
   const useComponent = modals[name];
 
   return useComponent();
 };
-
-
 
 export function Modal(props: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -68,13 +70,19 @@ export function Modal(props: ModalProps) {
           className={`${styles.inner} ${props.containerClassName ? props.containerClassName : ""}`}
           {...modalAnimations.content}
         >
-          <div className={styles.content} >
+          <div className={styles.content}>
             {showSnow()}
-            <div className={styles.main__content} style={{paddingTop: props.nameModal == 'Recommendation' ? '40px' : '30px'}}>
+            <div
+              className={styles.main__content}
+              style={{
+                paddingTop:
+                  props.nameModal == "Recommendation" ? "40px" : "30px",
+              }}
+            >
               <div className="skew">
                 <div className={styles.head}>
                   <p
-                    style={props.data?.number ? {marginTop: "20px"} : {}}
+                    style={props.data?.number ? { marginTop: "20px" } : {}}
                     className={styles.title}
                   >
                     {props.title}
