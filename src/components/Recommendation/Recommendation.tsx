@@ -5,7 +5,7 @@ import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { getImages } from "../../utils/getImages";
 
 interface RecommendationProps {
-  item: { id: number; title?: string; description?: string };
+  item: { id: number; title?: string; description?: string; isViewed: boolean };
   active?: boolean;
   attachments?: TRecommendationAttachment[];
 }
@@ -22,6 +22,15 @@ export function Recommendation(props: RecommendationProps) {
       });
   };
 
+  const isViewed = () => {
+    if (props.item?.isViewed)
+      return (
+        <i className={`pi pi-check ${styles.viewed__icon}`}>
+          <span className={styles.viewed__text}>Просмотрено</span>
+        </i>
+      );
+  };
+
   return (
     <div
       data-preview={getImages()[imageIndex]}
@@ -31,6 +40,7 @@ export function Recommendation(props: RecommendationProps) {
       } ${isOdd ? styles.recommendation__odd : ""}`}
     >
       <img className={styles.background} src={getImages()[imageIndex]} />
+      {isViewed()}
       <span>{props.item.id}</span>
     </div>
   );

@@ -34,8 +34,31 @@ const getModal = (name: modalsName) => {
   return useComponent();
 };
 
+
+
 export function Modal(props: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const showSnow = () => {
+    if (props.nameModal)
+      return (
+        <div className={styles.number__container}>
+          {props.data?.number && (
+            <div
+              className={styles.number}
+              style={{
+                background: `url(${getImages()[1]})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+              }}
+            >
+              <div className={styles.number__day}>{props.data.number}</div>
+            </div>
+          )}
+        </div>
+      );
+  };
 
   function ModalContent() {
     return (
@@ -45,26 +68,13 @@ export function Modal(props: ModalProps) {
           className={`${styles.inner} ${props.containerClassName ? props.containerClassName : ""}`}
           {...modalAnimations.content}
         >
-          <div className={styles.content}>
-            <div className={styles.number__container}>
-         
-              {props.data?.number && (
-                <div
-                  className={styles.number}
-                  style={{background: `url(${getImages()[1]})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center'}}
-                >
-                  <div className={styles.number__day}>
-                  {props.data.number}
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className={styles.main__content}>
+          <div className={styles.content} >
+            {showSnow()}
+            <div className={styles.main__content} style={{paddingTop: props.nameModal == 'Recommendation' ? '40px' : '30px'}}>
               <div className="skew">
                 <div className={styles.head}>
-
                   <p
-                    style={props.data?.number ? {} : { marginTop: "20px" }}
+                    style={props.data?.number ? {marginTop: "20px"} : {}}
                     className={styles.title}
                   >
                     {props.title}

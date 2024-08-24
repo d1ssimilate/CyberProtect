@@ -49,3 +49,29 @@
     width: 120px;
   }
 }
+
+
+.viewed__icon {
+  font-size: clamp(30px, 6vw, 70px); 
+  color: var(--light-gray); 
+  position: absolute; 
+  left: 50%; 
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  backdrop-filter: blur(2px);
+  background-color: var(--deep-blue-a);
+  border-radius: 12px;
+}
+
+.viewed__text {
+  font-size: clamp(16px, 3vw, 20px) !important;
+  color: var(--light-gray) !important;
+}
