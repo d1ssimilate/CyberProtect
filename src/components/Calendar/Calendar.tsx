@@ -15,6 +15,7 @@ export function Calendar() {
     queryKey: ["recommendations"],
     queryFn: () => recommendationApiService.getRecommendations(),
   });
+  useEffect
   const { data: settingsData } = useQuery({
     queryKey: ["settings"],
     queryFn: () => adminApiService.getSettings(),
@@ -69,8 +70,10 @@ export function Calendar() {
           length: getDaysInMonth(new Date()) - recommendationsData.data.length,
         },
         (_, idx) => {
+          
           const id = lastId + idx + 1;
-          const isOdd = (items.length + idx + 1) % 2 !== 0;
+          
+          const isOdd = (items.length + idx + 1) % 2 !== 0  && items.length + idx + 1 != 31;
           const imageIndex =
             ((items.length + idx - ((items.length + idx) % 2)) / 2) %
             getImages().length;
@@ -87,6 +90,7 @@ export function Calendar() {
       return [...items, ...additionalItems];
     } else {
       return Array.from({ length: getDaysInMonth(new Date()) }, (_, idx) => {
+        
         const isOdd = (idx + 1) % 2 !== 0;
         const imageIndex = ((idx - (idx % 2)) / 2) % getImages().length;
         return (

@@ -43,7 +43,7 @@ export function Recommendation(props: RecommendationProps) {
         props.active ? styles.recommendation__active : ""
       } ${isOdd ? styles.recommendation__odd : ""}`}
     >
-      <img className={styles.background} src={getImages()[imageIndex]} />
+  
       {isViewed()}
       <span>{props.item.id}</span>
     </div>

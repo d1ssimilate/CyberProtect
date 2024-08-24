@@ -8,6 +8,7 @@ import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import { useCookie } from "../../../../hooks/useCookie";
 import { DialogContext } from "../../../Providers/DialogProvier/DialogProvider";
 import { useToast } from "../../../../hooks/useToast";
+import { queryClient } from "../../../../api/instance";
 
 interface IAuthPasswordForm {
   code: string;
@@ -25,6 +26,7 @@ export const useAuthPassword = () => {
   const { mutate, isPending, isSuccess, data } = useMutation({
     mutationFn: (params: TUserAuthPasswordDtoRequest) =>
       userApiService.patchAuthPassword({ params }),
+    onSuccess: () => queryClient.refetchQueries({queryKey: ['recommendations']})
   });
 
   useEffect(() => {

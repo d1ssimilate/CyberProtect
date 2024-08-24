@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   gap: 8px;
+  position: relative;
 }
 .column {
   flex: 1;
@@ -16,8 +17,10 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  overflow-x: clip;
+  // overflow-x: clip;
 }
+
+
 .item:nth-child(odd) {
   img {
     animation: rotate 2.5s linear infinite;
@@ -53,5 +56,36 @@
 
   100% {
     transform: rotate(30deg);
+  }
+}
+
+.last_item {
+  position: relative;
+  &::after {
+    content: 'Команда "Перфоратор" совместно с "КИБЕРПРОТЕКТ" поздравляют вас с новым годом!';
+    position: absolute;
+    width: clamp(230px, 77.5vw, 1113px);
+    height: 100%;
+    left: 100%;
+    font-size: clamp(18px, 6vw, 32px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    padding: 0 20px;
+    background: var(--light-blue-gradient);
+    color: var(--white);
+    border-radius: 12px;
+    margin-left: 12px;
+
+    @media screen and (max-width: 960px) {
+      width: max(230px, 61.5vw);
+    }
+
+    @media screen and (max-width: 375px) {
+      display: none;
+      background: none;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Masonry.module.scss";
 
 interface Column {
@@ -7,6 +7,7 @@ interface Column {
 
 export function Masonry({ items }: { items: any[] }) {
   const [screenWidth, setScreenWidth] = useState(0);
+  const grid = useRef(null);
 
   useEffect(() => {
     setScreenWidth(window.innerWidth);
@@ -38,16 +39,20 @@ export function Masonry({ items }: { items: any[] }) {
   }, [columnCount, items]);
 
   return (
-    <div className={styles.grid}>
-      {columns.map((column, idx) => (
-        <div className={styles.column} key={idx}>
+    <div className={styles.grid} ref={grid}>
+      {columns.map((column, columnId) => (
+        <div className={styles.column} key={columnId}>
           {column.items.map((item, idx) => (
-            <div className={styles.item} key={idx}>
+            <div className={`${styles.item} ${columnId == 0 && idx == column.items.length - 1 ? styles.last_item : ''}`} key={idx}>
               {item}
             </div>
           ))}
         </div>
       ))}
     </div>
+    
   );
+
+
+
 }
