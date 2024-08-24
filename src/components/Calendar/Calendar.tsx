@@ -59,7 +59,7 @@ export function Calendar() {
             {isOdd && (
               <img className={styles.toy} src={getImages()[imageIndex]} />
             )}
-            <Recommendation active={true} key={idx} item={item} />
+            <Recommendation active={true} key={idx} item={item}  />
           </>
         );
       });

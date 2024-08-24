@@ -1,31 +1,33 @@
 import styles from "./Recommendation.module.scss";
 import { TRecommendationAttachment } from "../../api/entities/recommendation/recommendation.types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { DialogContext } from "../Providers/DialogProvier/DialogProvider";
 import { getImages } from "../../utils/getImages";
 
 interface RecommendationProps {
-  item: { id: number; title?: string; description?: string; isViewed: boolean };
+  item: { id: number; title?: string; description?: string; isViewed?: boolean };
   active?: boolean;
   attachments?: TRecommendationAttachment[];
 }
 
 export function Recommendation(props: RecommendationProps) {
   const isOdd = props.item.id % 2 !== 0;
-  const [viewed, setViewed] = useState(props.item.isViewed);
+  
+  const [viewed, setViewed] = useState<boolean>(!!props.item.isViewed);
   const imageIndex = props.item.id % getImages().length;
   const { setDialog } = useContext(DialogContext);
   const onClick = () => {
-    if (props.active)
+    if (props.active) {      
       setViewed(true);
       setDialog("Recommendation", props.item.title, {
         ...props.item,
         number: props.item.id,
       });
+    }
   };
 
   const isViewed = () => {
-    if (viewed)
+    if (props.active && viewed)
       return (
         <i className={`pi pi-check ${styles.viewed__icon}`}>
           <span className={styles.viewed__text}>Просмотрено</span>
